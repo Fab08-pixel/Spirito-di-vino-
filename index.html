@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spirito Di Vino — Wine Bar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg:      '#121212',
+              surface: '#1c1c1c',
+              card:    '#242424',
+              border:  '#2e2e2e',
+              accent:  '#c2410c',
+              'accent-light': '#ea580c',
+              'accent-dim':   '#7c2d12',
+              muted:   '#6b6b6b',
+              text:    '#e8e0d5',
+              'text-dim': '#a09888',
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body:    ['Barlow', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { background-color: #121212; color: #e8e0d5; font-family: 'Barlow', sans-serif; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #1c1c1c; }
+    ::-webkit-scrollbar-thumb { background: #c2410c; border-radius: 2px; }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      background: rgba(18,18,18,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #2e2e2e;
+    }
+
+    .nav-link {
+      color: #a09888;
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.3rem 0.6rem; border-radius: 2px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap; display: block;
+    }
+    .nav-link:hover, .nav-link.active { color: #ea580c; background: rgba(194,65,12,0.08); }
+
+    /* Hamburger button */
+    #menu-toggle {
+      display: none; flex-direction: column;
+      justify-content: center; gap: 5px;
+      width: 36px; height: 36px; cursor: pointer;
+      padding: 6px; border-radius: 4px;
+      transition: background 0.2s; background: transparent; border: none;
+    }
+    #menu-toggle:hover { background: rgba(194,65,12,0.1); }
+    #menu-toggle span {
+      display: block; height: 1.5px;
+      background: #a09888; border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, background 0.2s;
+    }
+    #menu-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: #c2410c; }
+    #menu-toggle.open span:nth-child(2) { opacity: 0; }
+    #menu-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: #c2410c; }
+
+    /* Mobile dropdown */
+    #mobile-menu {
+      display: none; position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(14,14,14,0.99);
+      border-bottom: 1px solid #2e2e2e;
+      padding: 0.75rem 1rem 1.25rem; z-index: 100;
+    }
+    #mobile-menu.open { display: block; }
+    .mobile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px;
+    }
+    .mobile-grid .nav-link { text-align: center; padding: 0.6rem 0.4rem; font-size: 0.64rem; }
+
+    /* Desktop show links, hide toggle */
+    @media (min-width: 768px) {
+      #desktop-links { display: flex !important; flex-wrap: wrap; gap: 2px; align-items: center; }
+      #menu-toggle   { display: none !important; }
+      #mobile-menu   { display: none !important; }
+    }
+    @media (max-width: 767px) {
+      #desktop-links { display: none !important; }
+      #menu-toggle   { display: flex !important; }
+    }
+
+    /* ── HERO ── */
+    .hero-line { width: 60px; height: 1px; background: #c2410c; display: inline-block; vertical-align: middle; margin: 0 12px; }
+
+    /* ── SECTION ── */
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,5vw,2.4rem); font-weight: 900; color: #e8e0d5; letter-spacing: -0.01em; }
+    .cat-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 2rem; }
+    .cat-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, #2e2e2e, transparent); }
+
+    /* ── CARDS ── */
+    .menu-card {
+      background: #1c1c1c; border: 1px solid #2e2e2e; border-radius: 4px;
+      padding: 1.1rem 1.2rem; transition: border-color 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .menu-card::before { content: ''; position: absolute; left:0; top:0; bottom:0; width: 2px; background: #c2410c; opacity: 0; transition: opacity 0.2s; }
+    .menu-card:hover { border-color: #c2410c; transform: translateX(2px); }
+    .menu-card:hover::before { opacity: 1; }
+    .item-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; color: #e8e0d5; line-height: 1.3; }
+    .item-desc { font-size: 0.8rem; color: #a09888; font-weight: 300; margin-top: 0.2rem; line-height: 1.5; }
+    .item-price { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #c2410c; white-space: nowrap; }
+
+    /* Allergen code superscript */
+    .alg { color: #c2410c; font-size: 0.58rem; font-weight: 700; vertical-align: super; letter-spacing: 0; font-family: 'Barlow', sans-serif; }
+
+    /* ── BADGES / SUBHEADERS ── */
+    .badge-new { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; color: #c2410c; border: 1px solid #c2410c; padding: 0 5px; border-radius: 2px; vertical-align: middle; margin-left: 6px; text-transform: uppercase; }
+    .sub-header { font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #c2410c; border-bottom: 1px solid #2e2e2e; padding-bottom: 0.4rem; margin: 1.8rem 0 1rem; }
+
+    /* ── FADE IN ── */
+    .section-fade { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .section-fade.visible { opacity: 1; transform: none; }
+
+    /* ── SEPARATORS ── */
+    .vine-separator { text-align: center; color: #2e2e2e; letter-spacing: 0.3em; font-size: 0.9rem; margin: 1.5rem 0; }
+
+    /* ── ALLERGENI SECTION ── */
+    #allergeni { scroll-margin-top: 90px; }
+    .alg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
+    .alg-item { background: #1c1c1c; border: 1px solid #2e2e2e; border-radius: 4px; padding: 0.7rem 1rem; display: flex; align-items: center; gap: 12px; }
+    .alg-code { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.15rem; color: #c2410c; min-width: 20px; }
+    .alg-name { font-size: 0.78rem; font-weight: 500; color: #e8e0d5; line-height: 1.3; }
+    .alg-detail { font-size: 0.67rem; color: #6b6b6b; font-weight: 300; margin-top: 1px; }
+    .alg-notice { font-size: 0.72rem; color: #6b6b6b; line-height: 1.7; margin-top: 1.25rem; border-top: 1px solid #2e2e2e; padding-top: 1rem; }
+    .alg-notice strong { color: #a09888; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-5xl mx-auto px-4 relative">
+
+    <!-- Brand bar -->
+    <div class="flex items-center justify-between py-3 border-b border-brand-border">
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 rounded-full border border-brand-accent flex items-center justify-center">
+          <span style="font-size:0.55rem;color:#c2410c;font-family:'Playfair Display',serif;font-style:italic">S</span>
+        </div>
+        <span style="font-family:'Playfair Display',serif;font-size:0.95rem;letter-spacing:0.05em;color:#e8e0d5;">
+          Spirito Di Vino
+          <span style="color:#6b6b6b;font-size:0.7rem;font-family:'Barlow',sans-serif;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;"> Wine Bar</span>
+        </span>
+      </div>
+      <span class="hidden md:block" style="font-size:0.65rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;">Menù</span>
+      <button id="menu-toggle" aria-label="Apri menù di navigazione" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Desktop links -->
+    <div id="desktop-links" class="py-2"></div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu">
+      <div class="mobile-grid" id="mobile-links"></div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+<header style="padding-top:7rem;padding-bottom:3.5rem;text-align:center;border-bottom:1px solid #2e2e2e;">
+  <p style="font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:#c2410c;margin-bottom:1rem;">Dal vino al sapore</p>
+  <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,8vw,4rem);font-weight:900;line-height:1.05;color:#e8e0d5;">
+    Spirito<br/><em style="color:#c2410c;">Di Vino</em>
+  </h1>
+  <div style="margin-top:1rem;display:flex;align-items:center;justify-content:center;">
+    <span class="hero-line"></span>
+    <span style="font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:#6b6b6b;">Wine Bar</span>
+    <span class="hero-line"></span>
+  </div>
+  <p style="margin-top:1.2rem;font-size:0.85rem;color:#a09888;font-weight:300;max-width:300px;margin-left:auto;margin-right:auto;line-height:1.7;">
+    Cucina autentica, ingredienti selezionati,<br/>atmosfera unica.
+  </p>
+</header>
+
+<!-- MENU ROOT -->
+<main id="menu-root" class="max-w-5xl mx-auto px-4 py-12"></main>
+
+<!-- ALLERGENI -->
+<section id="allergeni" class="max-w-5xl mx-auto px-4 pb-16 section-fade">
+  <div class="vine-separator" style="margin-bottom:2rem;">· · ·</div>
+  <div class="cat-divider">
+    <div>
+      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#c2410c;margin-bottom:0.2rem;">⚠</p>
+      <h2 class="section-title">Allergeni</h2>
+    </div>
+  </div>
+  <p style="font-size:0.78rem;color:#a09888;margin-bottom:1.25rem;line-height:1.6;">
+    I 14 allergeni regolamentati dal <strong style="color:#e8e0d5;">Reg. UE 1169/2011</strong>.
+    Nelle descrizioni del menù, gli ingredienti allergeni sono marcati con il codice lettera in apice
+    (es. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tonno<sup class="alg">D</sup></em>).
+  </p>
+  <div class="alg-grid">
+    <div class="alg-item"><span class="alg-code">A</span><div><p class="alg-name">Glutine</p><p class="alg-detail">Frumento, segale, orzo, avena, farro, kamut</p></div></div>
+    <div class="alg-item"><span class="alg-code">B</span><div><p class="alg-name">Crostacei</p><p class="alg-detail">Gamberi, granchi, aragoste, scampi</p></div></div>
+    <div class="alg-item"><span class="alg-code">C</span><div><p class="alg-name">Uova</p><p class="alg-detail">Uova e prodotti a base di uova</p></div></div>
+    <div class="alg-item"><span class="alg-code">D</span><div><p class="alg-name">Pesce</p><p class="alg-detail">Pesce e prodotti a base di pesce</p></div></div>
+    <div class="alg-item"><span class="alg-code">E</span><div><p class="alg-name">Arachidi</p><p class="alg-detail">Arachidi e prodotti a base di arachidi</p></div></div>
+    <div class="alg-item"><span class="alg-code">F</span><div><p class="alg-name">Soia</p><p class="alg-detail">Soia e prodotti a base di soia</p></div></div>
+    <div class="alg-item"><span class="alg-code">G</span><div><p class="alg-name">Latte</p><p class="alg-detail">Latte e derivati (incluso lattosio)</p></div></div>
+    <div class="alg-item"><span class="alg-code">H</span><div><p class="alg-name">Frutta a guscio</p><p class="alg-detail">Mandorle, nocciole, noci, anacardi, pistacchi…</p></div></div>
+    <div class="alg-item"><span class="alg-code">I</span><div><p class="alg-name">Sedano</p><p class="alg-detail">Sedano e prodotti a base di sedano</p></div></div>
+    <div class="alg-item"><span class="alg-code">J</span><div><p class="alg-name">Senape</p><p class="alg-detail">Senape e prodotti a base di senape</p></div></div>
+    <div class="alg-item"><span class="alg-code">K</span><div><p class="alg-name">Semi di sesamo</p><p class="alg-detail">Semi di sesamo e prodotti derivati</p></div></div>
+    <div class="alg-item"><span class="alg-code">L</span><div><p class="alg-name">Anidride solforosa / Solfiti</p><p class="alg-detail">Concentrazioni &gt; 10 mg/kg o 10 mg/l</p></div></div>
+    <div class="alg-item"><span class="alg-code">M</span><div><p class="alg-name">Lupini</p><p class="alg-detail">Lupini e prodotti a base di lupini</p></div></div>
+    <div class="alg-item"><span class="alg-code">N</span><div><p class="alg-name">Molluschi</p><p class="alg-detail">Molluschi e prodotti a base di molluschi</p></div></div>
+  </div>
+  <div class="alg-notice">
+    <strong>Contaminazione crociata:</strong> i nostri piatti vengono preparati in cucine dove sono presenti tutti i 14 allergeni elencati.<br/>
+    Se soffri di allergie o intolleranze alimentari, <strong>informa il personale prima di ordinare</strong>.
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid #2e2e2e;padding:2.5rem 1rem;text-align:center;margin-top:1rem;">
+  <div class="vine-separator">· · ·</div>
+  <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#e8e0d5;font-style:italic;">Spirito Di Vino</p>
+  <p style="font-size:0.7rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.25rem;">Wine Bar</p>
+  <p style="font-size:0.72rem;color:#6b6b6b;margin-top:1rem;">I prezzi sono IVA inclusa · Menù soggetto a variazioni stagionali</p>
+</footer>
+
+<script>
+// ── Allergen auto-annotation ──────────────────────────────
+const allergenRules = [
+  { re: /\b(mozzarella|scamorza(?:\s+affumicata)?|cheddar|caciocavallo|provolone(?:\s+piccante)?|grana|emmental|gorgonzola|burrata|burratina|stracciatella|philadelphia|taleggio|galbanone|galbanino|provola(?:\s+dolce)?|crema di pistacchio|salsa\s+yogurt|yogurt)\b/gi, code: 'G' },
+  { re: /\b(hamburger|pane|baguette|wrap|piada|piadina|panzerott\w*|crocch\w*|polpett\w*|chips\s+di\s+zucchina|ketchup|cotoletta|wustel)\b/gi, code: 'A' },
+  { re: /\b(tonno|salsa\s+tonnata|acciughe|baccalà|salmone)\b/gi, code: 'D' },
+  { re: /\b(gamberetti|gambero|scampi|granchio)\b/gi, code: 'B' },
+  { re: /\b(maionese|uova|uovo)\b/gi, code: 'C' },
+  { re: /\b(pistacchio|crema\s+di\s+pistacchio|nocciola|mandorla|noci)\b/gi, code: 'H' },
+  { re: /\b(senape|honey\s+mustard)\b/gi, code: 'J' },
+  { re: /\b(prosecco|glassa\s+di\s+aceto|aceto\s+balsamico)\b/gi, code: 'L' },
+  { re: /\b(salsa\s+bbq)\b/gi, code: 'F' },
+  { re: /\b(giardiniera)\b/gi, code: 'I' },
+];
+
+function annotateDesc(desc) {
+  if (!desc) return desc;
+  let out = desc;
+  const done = new Map();
+  allergenRules.forEach(({ re, code }) => {
+    re.lastIndex = 0;
+    out = out.replace(re, (match) => {
+      const key = match.toLowerCase();
+      if (!done.has(key)) done.set(key, new Set());
+      if (done.get(key).has(code)) return match;
+      done.get(key).add(code);
+      return `${match}<sup class="alg">${code}</sup>`;
+    });
+  });
+  return out;
+}
+
+// ── Menu data ────────────────────────────────────────────
+const menuData = [
+  {
+    id: 'wrap', titolo: 'I Wrap', emoji: '🌯', sottotitoli: null,
+    items: [
+      { nome: 'Pulled Pork', desc: 'Cipolla, Scamorza affumicata, Salsa BBQ, Peperoncino', prezzo: '€ 10,00' },
+      { nome: 'Burrito', desc: 'Carne Trita, Fagioli Rossi, Mais, Cipolla, Peperoni, Peperoncino, Salsa BBQ', prezzo: '€ 10,00' },
+      { nome: 'Pollo alla Griglia', desc: 'Pomodoro, Insalata, Erba cipollina, Salsa yogurt', prezzo: '€ 10,00' },
+    ]
+  },
+  {
+    id: 'hamburger', titolo: 'Hamburger', emoji: '🍔', items: [],
+    sottotitoli: [
+      { label: 'Le Specialità — Novità', isNew: true, items: [
+        { nome: 'Lynyrd Skynyrd', desc: 'Hamburger, Bacon, Cipolla caramellata, Caciocavallo, Tocchetti di Melanzane al forno, Radicchio', prezzo: '€ 10,00' },
+        { nome: 'Creedence', desc: 'Hamburger, Stracciatella, Chips di zucchina, Erba cipollina, Insalata', prezzo: '€ 10,00' },
+      ]},
+      { label: 'Le Specialità', isNew: false, items: [
+        { nome: 'Onion Ring', desc: 'Hamburger, Bacon, Cheddar, Insalata, Pomodoro, Anelli di cipolla Fritti, Ketchup', prezzo: '€ 10,00' },
+        { nome: 'Burratina', desc: 'Hamburger, Mortadella, Burratina, Rucola, Crema di Pistacchio', prezzo: '€ 10,00' },
+        { nome: 'Pulled Pork', desc: 'Hamburger, Bacon, Cheddar, Pomodoro, Insalata, Pulled Pork, Salsa BBQ', prezzo: '€ 10,00' },
+        { nome: 'Crocchè', desc: 'Hamburger, Bacon, Cheddar, Pomodoro, Insalata, Crocchè gigante con ripieno di Mozzarella, Salsa Ceasar', prezzo: '€ 10,00' },
+        { nome: 'ZZ Top', desc: 'Hamburger, Pomodori secchi, Taleggio, Speck, Rucola, Maionese, Senape', prezzo: '€ 10,00' },
+        { nome: 'AC/DC', desc: 'Hamburger, Bacon, Pomodoro, Cipolla, Nduja, Insalata, Caciocavallo', prezzo: '€ 10,00' },
+      ]},
+      { label: 'I Classici', isNew: false, items: [
+        { nome: 'Classic 1', desc: 'Hamburger, Cheddar, Pomodoro, Insalata', prezzo: '€ 6,00' },
+        { nome: 'Classic 2', desc: 'Hamburger, Bacon, Maionese, Insalata, Pomodoro', prezzo: '€ 8,00' },
+        { nome: 'Classic 3', desc: 'Hamburger, Bacon, Cheddar, Cipolla, Cetriolo, Insalata, Salsa BBQ', prezzo: '€ 8,00' },
+        { nome: 'Classic 4', desc: 'Hamburger, Bacon, Patatine fritte, Ketchup, Maionese', prezzo: '€ 8,00' },
+        { nome: 'Doppio', desc: 'Doppio Hamburger, Bacon, Cheddar, Cetriolo, Insalata Capricciosa', prezzo: '€ 10,00' },
+        { nome: 'Classic 6', desc: 'Hamburger, Bacon, Cheddar, Insalata, Ketchup, Senape', prezzo: '€ 8,00' },
+        { nome: 'Piccante', desc: 'Hamburger, Bacon, Salame piccante, Provolone, Insalata, Peperoncino, Salsa BBQ', prezzo: '€ 8,00' },
+        { nome: 'Salsa Burger', desc: 'Hamburger, Bacon, Cheddar, Cetriolo, Salsa Burger', prezzo: '€ 8,00' },
+        { nome: 'Porchetta Mustard', desc: 'Porchetta, Bacon, Scamorza Affumicata, Insalata, Salsa Honey Mustard', prezzo: '€ 8,00' },
+        { nome: 'Porchetta Provola', desc: 'Porchetta, Bacon, Provola Dolce, Cipolla, Rucola, Pomodoro', prezzo: '€ 8,00' },
+        { nome: 'Cotoletta', desc: 'Cotoletta, Pomodoro, Insalata, Maionese', prezzo: '€ 7,00' },
+        { nome: 'Cotoletta Bacon', desc: 'Cotoletta, Bacon, Cheddar, Insalata, Salsa Honey Mustard', prezzo: '€ 8,00' },
+        { nome: 'Wustel', desc: 'Wustel, Ketchup, Maionese', prezzo: '€ 6,00' },
+      ]},
+    ]
+  },
+  {
+    id: 'piatti', titolo: 'I Piatti', emoji: '🍽️', sottotitoli: null,
+    items: [
+      { nome: 'Hamburger Completo', desc: 'Hamburger di manzo gr150, Cheddar, Bacon, Insalata, Patatine fritte', prezzo: '€ 10,00' },
+      { nome: 'Kebab in Piada', desc: 'Kebab, Cipolla, Scamorza affumicata, Insalata, Salsa Ceasar in Piada con Patatine fritte', prezzo: '€ 10,00' },
+      { nome: 'Caprese', desc: 'Pomodoro e Mozzarella su letto di Rucola', prezzo: '€ 8,00' },
+      { nome: 'Tagliata di Pollo', desc: 'Pomodorini, Rucola, Grana con Glassa di Aceto Balsamico', prezzo: '€ 10,00' },
+    ]
+  },
+  {
+    id: 'insalate', titolo: 'Le Insalate', emoji: '🥗', sottotitoli: null,
+    items: [
+      { nome: 'Insalata Mare', desc: 'Lattuga, Rucola, Pomodoro, Mozzarella, Mais, Olive nere, Tonno', prezzo: '€ 7,00' },
+      { nome: 'Insalata Bresaola', desc: 'Lattuga, Rucola, Pomodoro, Funghi, Grana, Bresaola o Crudo', prezzo: '€ 7,00' },
+      { nome: 'Insalata Pollo', desc: 'Lattuga, Rucola, Mais, Pomodoro, Pollo alla Griglia, Salsa allo Yogurt', prezzo: '€ 10,00' },
+    ]
+  },
+  {
+    id: 'taglieri', titolo: 'I Taglieri', emoji: '🧀', sottotitoli: null,
+    items: [
+      { nome: 'Tagliere Bresaola', desc: 'Bresaola, Rucola, Grana, Olio, Limone, Pepe Nero', prezzo: '€ 10,00' },
+      { nome: 'Tagliere Salumi Misti', desc: 'Selezione di salumi misti', prezzo: '€ 15,00' },
+      { nome: 'Tagliere Misto', desc: 'Salumi e Formaggi misti', prezzo: '€ 15,00' },
+    ]
+  },
+  {
+    id: 'saltimbocca', titolo: 'Saltimbocca / Pucce', emoji: '🥙', sottotitoli: null,
+    items: [
+      { nome: 'Crudo e Mozzarella', desc: 'Crudo, Mozzarella', prezzo: '€ 6,00' },
+      { nome: 'Crudo Galbanone', desc: 'Crudo, Galbanone, Salsa Tonnata', prezzo: '€ 6,00' },
+      { nome: 'Crudo Scamorza', desc: 'Crudo, Scamorza Affumicata, Insalata Capricciosa', prezzo: '€ 6,00' },
+      { nome: 'Crudo Funghi Porcini', desc: 'Crudo, Mozzarella, Salsa ai Funghi Porcini', prezzo: '€ 6,00' },
+      { nome: 'Crudo Tonno', desc: 'Crudo, Mozzarella, Funghi, Tonno, Peperoncino', prezzo: '€ 6,00' },
+      { nome: 'Cotto Yogurt', desc: 'Cotto di Praga, Galbanino, Funghi, Insalata, Mais, Salsa Yogurt', prezzo: '€ 6,00' },
+      { nome: 'Cotto Piccante', desc: 'Cotto di Praga, Salame Piccante, Scamorza Affumicata, Funghi, Tonno, Insalata, Peperoncino', prezzo: '€ 7,00' },
+      { nome: 'Speck Galbanino', desc: 'Speck, Galbanino, Pomodoro, Rucola', prezzo: '€ 6,00' },
+      { nome: 'Speck Funghi', desc: 'Speck, Scamorza Affumicata, Funghi, Salsa Rosa', prezzo: '€ 6,00' },
+      { nome: 'Pancetta Tonno', desc: 'Pancetta, Provolone Piccante, Tonno, Giardiniera', prezzo: '€ 6,00' },
+      { nome: 'Pancetta Wustel', desc: 'Pancetta, Wustel a fettine, Galbanino, Peperoncino', prezzo: '€ 6,00' },
+      { nome: 'Salame Tonno', desc: 'Salame Dolce, Emmental, Funghi, Tonno', prezzo: '€ 6,00' },
+      { nome: 'Bresaola', desc: 'Bresaola, Rucola, Grana, Olio, Limone, Pepe', prezzo: '€ 7,00' },
+      { nome: 'Mortadella Giardiniera', desc: 'Mortadella, Provolone Piccante, Tonno, Giardiniera', prezzo: '€ 6,00' },
+    ]
+  },
+  {
+    id: 'piadina', titolo: 'Piadina', emoji: '🫓', sottotitoli: null,
+    items: [
+      { nome: 'Piadina 1', desc: 'Salame Dolce, Emmental, Pomodoro, Peperoncino', prezzo: '€ 6,00' },
+      { nome: 'Piadina 2', desc: 'Crudo, Mozzarella', prezzo: '€ 6,00' },
+      { nome: 'Piadina 3', desc: 'Cotto di Praga, Emmental, Salsa Tonnata', prezzo: '€ 6,00' },
+      { nome: 'Piadina 4', desc: 'Salame Piccante, Pancetta, Peperoncino, Provolone Piccante', prezzo: '€ 6,00' },
+      { nome: 'Piadina 5', desc: 'Cotto di Praga, Philadelphia, Rucola', prezzo: '€ 6,00' },
+      { nome: 'Piadina 6', desc: 'Crudo, Mozzarella, Pomodoro, Rucola, Grana', prezzo: '€ 7,00' },
+      { nome: 'Piadina 7', desc: 'Tonno, Mozzarella, Pomodoro, Olive', prezzo: '€ 6,00' },
+      { nome: 'Piadina 8', desc: 'Cotto di Praga, Insalata Capricciosa, Funghi, Mais', prezzo: '€ 6,00' },
+      { nome: 'Piadina 9', desc: 'Cotto di Praga, Gamberetti in Salsa Cocktail, Rucola', prezzo: '€ 6,00' },
+      { nome: 'Piadina 10', desc: 'Cotto di Praga, Tonno, Gamberetti, Pomodoro, Rucola', prezzo: '€ 6,00' },
+    ]
+  },
+  {
+    id: 'baguette', titolo: 'Baguette', emoji: '🥖', items: [],
+    sottotitoli: [
+      { label: 'Pane caldo cotto al momento', isNew: false, items: [
+        { nome: 'Baguette 1', desc: 'Bresaola, Funghi, Tonno, Rucola, Salsa ai funghi porcini', prezzo: '€ 10,00' },
+        { nome: 'Baguette 2', desc: 'Mortadella, Provolone, Giardiniera', prezzo: '€ 8,00' },
+        { nome: 'Baguette 3', desc: 'Cotto di Praga, Galbanino, Pomodoro, Rucola', prezzo: '€ 8,00' },
+        { nome: 'Baguette 4', desc: 'Capocollo, Scamorza Affumicata, Funghi, Insalata', prezzo: '€ 8,00' },
+        { nome: 'Baguette 5', desc: 'Salame Piccante, Emmental, Tonno, Pomodoro, Peperoncino', prezzo: '€ 8,00' },
+        { nome: 'Mortadella e Burrata', desc: 'Mortadella, Burrata, Crema di Pistacchio', prezzo: '€ 10,00' },
+        { nome: 'Baguette 7', desc: 'Capocollo, Galbanone, Tonno, Peperoni', prezzo: '€ 8,00' },
+      ]},
+      { label: 'Novità', isNew: true, items: [
+        { nome: 'Crudo Stracciatella', desc: 'Crudo, Stracciatella, Chips di zucchina, Radicchio', prezzo: '€ 10,00' },
+        { nome: 'Speck Melanzane', desc: 'Speck, Scamorza Affumicata, Tocchetti di Melanzane al forno, Salsa Rosa, Insalata', prezzo: '€ 10,00' },
+      ]},
+    ]
+  },
+  {
+    id: 'pizze', titolo: 'Pizze', emoji: '🍕', sottotitoli: null,
+    items: [
+      { nome: 'Margherita', desc: 'Pomodoro, Mozzarella', prezzo: '€ 5,00' },
+      { nome: 'Diavola', desc: 'Pomodoro, Mozzarella, Salame Piccante', prezzo: '€ 7,00' },
+      { nome: 'Capricciosa', desc: 'Pomodoro, Mozzarella, Cotto, Wustel, Funghi, Olive, Salame Piccante', prezzo: '€ 8,00' },
+      { nome: 'Quattro Formaggi', desc: 'Pomodoro, Mozzarella, Provola, Emmental, Gorgonzola', prezzo: '€ 8,00' },
+      { nome: 'Fumè', desc: 'Pomodoro, Mozzarella, Bacon, Salame Piccante', prezzo: '€ 7,00' },
+      { nome: 'Mediterranea', desc: 'Pomodoro, Mozzarella, Crudo, Rucola, Grana', prezzo: '€ 8,00' },
+      { nome: 'Chips', desc: 'Pomodoro, Mozzarella, Patatine Fritte', prezzo: '€ 6,00' },
+      { nome: 'Americana', desc: 'Pomodoro, Mozzarella, Wustel, Patatine Fritte', prezzo: '€ 7,00' },
+      { nome: 'Tonno e Cipolla', desc: 'Pomodoro, Mozzarella, Tonno, Cipolla', prezzo: '€ 8,00' },
+      { nome: 'Bianca', desc: 'Mozzarella, Scamorza affumicata, Salame Piccante, Wustel, Mais, Olive', prezzo: '€ 8,00' },
+      { nome: 'Pamy', desc: 'Mozzarella, Emmental, Provola, Bacon, Funghi', prezzo: '€ 8,00' },
+      { nome: 'Crudaiola', desc: 'Base Piadina: Pomodorini, Mozzarella, Crudo, Rucola, Grana', prezzo: '€ 9,00' },
+      { nome: 'Saporita', desc: 'Pomodoro, Mozzarella, Salame Piccante, Gorgonzola, Olive', prezzo: '€ 8,00' },
+      { nome: 'Boscaiola', desc: 'Pomodoro, Mozzarella, Cotto, Funghi', prezzo: '€ 7,00' },
+      { nome: 'Prelibata', desc: 'Mozzarella, Funghi, Capocollo, Burrata, Rucola', prezzo: '€ 10,00' },
+      { nome: 'Mortadella', desc: 'Mozzarella, Mortadella, Burrata, Crema di Pistacchio', prezzo: '€ 10,00' },
+      { nome: 'Pulled', desc: 'Pomodoro, Mozzarella, Pulled Pork', prezzo: '€ 10,00' },
+      { nome: 'Wine Temptation', desc: 'Pomodoro, Mozzarella, Funghi, Salame Piccante, Cotto, Pomodorini, Olive Nere, Peperoncino, Aglio', prezzo: '€ 10,00' },
+      { nome: 'Ortolana', desc: 'Pomodoro, Mozzarella, Zucchine, Melanzane, Peperoni, Funghi', prezzo: '€ 7,00' },
+    ]
+  },
+  {
+    id: 'friggitoria', titolo: 'Friggitoria', emoji: '🍟', sottotitoli: null,
+    items: [
+      { nome: 'Patatine Fritte', desc: '', prezzo: '€ 3,00' },
+      { nome: 'Patate con Buccia Fritte', desc: '', prezzo: '€ 4,00' },
+      { nome: 'Twister alla Paprika', desc: '', prezzo: '€ 4,00' },
+      { nome: 'Patatine Pops', desc: '', prezzo: '€ 4,00' },
+      { nome: 'Crocchette di Patate', desc: '', prezzo: '€ 3,00' },
+      { nome: 'Pepite di Pollo', desc: '', prezzo: '€ 3,00' },
+      { nome: 'Pepite di Pollo Speziate', desc: '', prezzo: '€ 5,00' },
+      { nome: 'Polpette Artigianali 15pz', desc: '', prezzo: '€ 5,00' },
+      { nome: 'Panzerottini Dolci/Piccanti', desc: '', prezzo: '€ 4,00' },
+      { nome: 'Straccetti di Pollo', desc: '', prezzo: '€ 6,00' },
+      { nome: 'Crocchette Artigianali', desc: '', prezzo: '€ 5,00' },
+      { nome: 'Polpette di Melanzane', desc: '', prezzo: '€ 5,00' },
+      { nome: 'Anelli di Cipolla', desc: '', prezzo: '€ 5,00' },
+      { nome: 'Polpette di Pulled Pork', desc: '', prezzo: '€ 6,00' },
+      { nome: 'Jalapeno', desc: '', prezzo: '€ 5,00' },
+      { nome: 'Fritto Misto', desc: 'Selezione della friggitoria', prezzo: '€ 15,00' },
+    ]
+  },
+  {
+    id: 'scrocchiarella', titolo: 'Scrocchiarella', emoji: '🫓', sottotitoli: null,
+    items: [
+      { nome: 'Scrocchiarella', desc: 'Scegli la farcitura: Base Margherita, Base Bianca o Base Piadina', prezzo: '€ 15,00' },
+    ]
+  },
+  {
+    id: 'bevande', titolo: 'Bevande', emoji: '🍷', items: [],
+    sottotitoli: [
+      { label: 'Analcolici', isNew: false, items: [
+        { nome: 'Coca Cola', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Coca Cola Zero', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Fanta', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Lemon Soda', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Schweppes', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Schweppes Limone', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Thè Limone / Pesca', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Succhi di Frutta', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Cedrata', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Cocktail San Pellegrino', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Crodino', desc: '', prezzo: '€ 2,50' },
+      ]},
+      { label: 'Birre', isNew: false, items: [
+        { nome: "Beck's", desc: '', prezzo: '€ 2,50' },
+        { nome: 'Peroni', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Corona', desc: '', prezzo: '€ 4,00' },
+        { nome: "Tennet's", desc: '', prezzo: '€ 4,00' },
+        { nome: 'Bjorne Beer', desc: '', prezzo: '€ 4,00' },
+        { nome: 'Leffe Rossa', desc: '', prezzo: '€ 4,00' },
+        { nome: 'Franziskaner Waiss', desc: '', prezzo: '€ 4,50' },
+        { nome: 'Nastro Azzurro — Spina Piccola', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Nastro Azzurro — Spina Media', desc: '', prezzo: '€ 4,00' },
+      ]},
+      { label: 'Drink Alcolici', isNew: false, items: [
+        { nome: 'Campari Soda', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Martini Bianco / Rosso', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Campari Bitter', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Prosecco', desc: '', prezzo: '€ 3,00' },
+      ]},
+      { label: 'Amari', isNew: false, items: [
+        { nome: 'Di Saronno', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Lucano', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Jagermeister', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Amaro del Capo', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Montenegro', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Brancamenta', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Unicum', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Sambuca', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Fernet Branca', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Jefferson', desc: '', prezzo: '€ 4,00' },
+      ]},
+      { label: 'Distillati', isNew: false, items: [
+        { nome: 'Vodka', desc: '', prezzo: '€ 2,50' },
+        { nome: 'Grappa', desc: '', prezzo: '€ 3,00' },
+        { nome: 'Grappa Barricata', desc: '', prezzo: '€ 3,00' },
+        { nome: 'Whisky', desc: '', prezzo: '€ 3,00' },
+        { nome: 'Whisky Speciali', desc: '', prezzo: '€ 5,00' },
+        { nome: 'Rum', desc: '', prezzo: '€ 3,00' },
+        { nome: 'Rum Speciali', desc: '', prezzo: '€ 5,00' },
+        { nome: 'Cognac', desc: '', prezzo: '€ 4,00' },
+        { nome: 'Tequila', desc: '', prezzo: '€ 3,00' },
+        { nome: 'Cocktail vari', desc: '', prezzo: '€ 5,00' },
+      ]},
+    ]
+  }
+];
+
+// ── Build nav (desktop + mobile) ─────────────────────────
+const desktopLinks  = document.getElementById('desktop-links');
+const mobileLinksEl = document.getElementById('mobile-links');
+const navCategories = [...menuData, { id: 'allergeni', titolo: 'Allergeni' }];
+
+navCategories.forEach(cat => {
+  [desktopLinks, mobileLinksEl].forEach((container, i) => {
+    const a = document.createElement('a');
+    a.href = `#${cat.id}`;
+    a.className = 'nav-link';
+    a.textContent = cat.titolo;
+    if (i === 1) { // mobile: close on click
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+    container.appendChild(a);
+  });
+});
+
+// Hamburger toggle
+const toggle     = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+toggle.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+  toggle.setAttribute('aria-expanded', String(isOpen));
+});
+// Close on outside click
+document.addEventListener('click', (e) => {
+  if (!toggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+    mobileMenu.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+});
+
+// ── Render menu ──────────────────────────────────────────
+const root = document.getElementById('menu-root');
+
+function renderItems(items) {
+  if (!items || !items.length) return '';
+  return items.map(item => `
+    <div class="menu-card">
+      <div class="flex justify-between items-start gap-4">
+        <div class="flex-1 min-w-0">
+          <p class="item-name">${item.nome}</p>
+          ${item.desc ? `<p class="item-desc">${annotateDesc(item.desc)}</p>` : ''}
+        </div>
+        <p class="item-price flex-shrink-0">${item.prezzo}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+menuData.forEach((cat, idx) => {
+  const section = document.createElement('section');
+  section.id = cat.id;
+  section.className = 'section-fade mb-20';
+  section.style.scrollMarginTop = '90px';
+
+  let content = '';
+  if (cat.sottotitoli) {
+    cat.sottotitoli.forEach(sub => {
+      const badge = sub.isNew ? '<span class="badge-new">Novità</span>' : '';
+      content += `<div class="sub-header">${sub.label}${badge}</div>`;
+      content += `<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">${renderItems(sub.items)}</div>`;
+    });
+  } else {
+    content = `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">${renderItems(cat.items)}</div>`;
+  }
+
+  section.innerHTML = `
+    <div class="cat-divider">
+      <div>
+        <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#c2410c;margin-bottom:0.2rem;">${cat.emoji}</p>
+        <h2 class="section-title">${cat.titolo}</h2>
+      </div>
+    </div>
+    ${content}
+  `;
+  root.appendChild(section);
+
+  if (idx < menuData.length - 1) {
+    const sep = document.createElement('div');
+    sep.className = 'vine-separator';
+    sep.textContent = '· · ·';
+    root.appendChild(sep);
+  }
+});
+
+// ── Fade-in on scroll ────────────────────────────────────
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.05 });
+document.querySelectorAll('.section-fade').forEach(el => observer.observe(el));
+
+// ── Active nav highlight on scroll ──────────────────────
+const allIds  = [...menuData.map(c => c.id), 'allergeni'];
+const allEls  = allIds.map(id => document.getElementById(id));
+const allNavs = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  allEls.forEach((sec, i) => { if (sec && window.scrollY >= sec.offsetTop - 120) current = allIds[i]; });
+  allNavs.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+}, { passive: true });
+</script>
+</body>
+</html>
