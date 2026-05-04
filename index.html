@@ -204,45 +204,32 @@
     }
 
     .lang-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
-      transition: background 0.2s, transform 0.15s;
-      position: relative;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: 2px solid transparent;
+  padding: 0;               /* niente padding */
+  width: 52px;              /* dimensione fissa */
+  height: 34px;             /* proporzione bandiera */
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.15s, opacity 0.2s;
+}
 
-    .lang-btn:hover {
-      background: rgba(194, 65, 12, 0.08);
-      transform: scale(1.05);
-    }
+.lang-btn:hover {
+  transform: scale(1.06);
+}
 
-    .lang-btn.active {
-      background: rgba(194, 65, 12, 0.12);
-    }
+.lang-btn.active {
+  border-color: #c2410c;
+}
 
-    .lang-btn .flag {
-      font-size: 2.6rem;
-      line-height: 1;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-      transition: filter 0.2s;
-    }
-
-    .lang-btn:not(.active) .flag {
-      filter: grayscale(0.5) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-      opacity: 0.5;
-    }
-
-    .lang-btn.active .flag {
-      filter: drop-shadow(0 2px 10px rgba(194, 65, 12, 0.4));
-      opacity: 1;
-    }
-
+.lang-btn:not(.active) {
+  opacity: 0.45;
+  filter: grayscale(0.4);
+}
     .lang-divider-dot {
       width: 4px;
       height: 4px;
@@ -879,27 +866,39 @@
     <!-- LANGUAGE SWITCHER -->
     <div class="lang-switcher">
       <button class="lang-btn active" id="btn-it" onclick="setLang('it')" title="Italiano" aria-label="Italiano">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"
-          style="width: 1.2em; height: 1.2em; border-radius: 2px; display: inline-block;">
-          <rect width="3" height="2" fill="#009246" />
-          <rect width="2" height="2" x="1" fill="#fff" />
-          <rect width="1" height="2" x="2" fill="#ce2b37" />
-        </svg>
-      </button>
-      <div class="lang-divider-dot"></div>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English" aria-label="English">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"
-          style="width: 1.2em; height: 1.2em; border-radius: 2px; display: inline-block;">
-          <clipPath id="t">
-            <path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z" />
-          </clipPath>
-          <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
-          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
-          <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4" />
-          <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
-          <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
-        </svg>
-      </button>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"
+    style="width:100%;height:100%;border-radius:4px;display:block;">
+    <rect width="3" height="2" fill="#009246"/>
+    <rect width="2" height="2" x="1" fill="#fff"/>
+    <rect width="1" height="2" x="2" fill="#ce2b37"/>
+  </svg>
+</button>
+
+<div class="lang-divider-dot"></div>
+
+<button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English" aria-label="English">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"
+    style="width:100%;height:100%;border-radius:4px;display:block;">
+    <clipPath id="t">
+      <path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/>
+    </clipPath>
+    <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+    <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+    <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+  </svg>
+</button>
+    </div>
+
+    <!-- BOOKING BANNER -->
+    <div style="margin-top:1.6rem;display:inline-flex;align-items:center;gap:10px;border:1px solid #2e2e2e;border-radius:3px;padding:0.65rem 1.4rem;background:#1c1c1c;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;flex-shrink:0;">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.1 13.6 19.79 19.79 0 0 1 1 5.08 2 2 0 0 1 2.96 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 18z"/>
+      </svg>
+      <p id="booking-label" style="font-family:'Barlow',sans-serif;font-size:0.68rem;font-weight:400;letter-spacing:0.1em;color:#a09888;text-transform:uppercase;">
+        Per prenotazioni o info:&nbsp;<a href="tel:3476375869" style="color:#c2410c;font-weight:700;letter-spacing:0.05em;" onmouseover="this.style.color='#ea580c'" onmouseout="this.style.color='#c2410c'">347 637 5869</a>
+      </p>
     </div>
   </header>
 
@@ -932,12 +931,18 @@
   <!-- FOOTER -->
   <footer style="border-top:1px solid #2e2e2e;padding:2.5rem 1rem;text-align:center;margin-top:1rem;">
     <div class="vine-separator">· · ·</div>
-    <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#e8e0d5;font-style:italic;">Spirito Di Vino
-    </p>
-    <p style="font-size:0.7rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.25rem;">Wine Bar
-    </p>
-    <p id="footer-note" style="font-size:0.72rem;color:#6b6b6b;margin-top:1rem;">I prezzi sono IVA inclusa · Menù
-      soggetto a variazioni stagionali</p>
+    <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#e8e0d5;font-style:italic;">Spirito Di Vino</p>
+    <p style="font-size:0.7rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.25rem;">Wine Bar</p>
+    <!-- Booking in footer -->
+    <div style="margin-top:1.4rem;display:inline-flex;align-items:center;gap:9px;border:1px solid #2e2e2e;border-radius:3px;padding:0.55rem 1.2rem;background:#1c1c1c;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;flex-shrink:0;">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.1 13.6 19.79 19.79 0 0 1 1 5.08 2 2 0 0 1 2.96 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 10.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 18z"/>
+      </svg>
+      <p id="footer-booking-label" style="font-family:'Barlow',sans-serif;font-size:0.65rem;font-weight:400;letter-spacing:0.1em;color:#a09888;text-transform:uppercase;">
+        Per prenotazioni o info:&nbsp;<a href="tel:3476375869" style="color:#c2410c;font-weight:700;letter-spacing:0.05em;" onmouseover="this.style.color='#ea580c'" onmouseout="this.style.color='#c2410c'">347 637 5869</a>
+      </p>
+    </div>
+    <p id="footer-note" style="font-size:0.72rem;color:#6b6b6b;margin-top:1rem;">I prezzi sono IVA inclusa · Menù soggetto a variazioni stagionali</p>
   </footer>
 
   <script>
@@ -954,6 +959,7 @@
         allergenIntro: 'I 14 allergeni regolamentati dal <strong style="color:#e8e0d5;">Reg. UE 1169/2011</strong>. Nelle descrizioni del menù, gli ingredienti allergeni sono marcati con il codice lettera in apice (es. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tonno<sup class="alg">D</sup></em>).',
         allergenNotice: '<strong>Contaminazione crociata:</strong> i nostri piatti vengono preparati in cucine dove sono presenti tutti i 14 allergeni elencati.<br/>Se soffri di allergie o intolleranze alimentari, <strong>informa il personale prima di ordinare</strong>.',
         footerNote: 'I prezzi sono IVA inclusa · Menù soggetto a variazioni stagionali',
+        bookingLabel: 'Per prenotazioni o info:',
         badgeNew: 'Novità',
       },
       en: {
@@ -964,6 +970,7 @@
         allergenIntro: 'The 14 allergens regulated by <strong style="color:#e8e0d5;">EU Reg. 1169/2011</strong>. In the menu descriptions, allergenic ingredients are marked with a letter code in superscript (e.g. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tuna<sup class="alg">D</sup></em>).',
         allergenNotice: '<strong>Cross-contamination:</strong> our dishes are prepared in kitchens where all 14 listed allergens are present.<br/>If you suffer from food allergies or intolerances, <strong>please inform staff before ordering</strong>.',
         footerNote: 'Prices include VAT · Menu subject to seasonal changes',
+        bookingLabel: 'For reservations or info:',
         badgeNew: 'New',
       }
     };
@@ -1556,6 +1563,11 @@
       document.getElementById('allergen-intro').innerHTML = s.allergenIntro;
       document.getElementById('allergen-notice').innerHTML = s.allergenNotice;
       document.getElementById('footer-note').textContent = s.footerNote;
+
+      // Booking labels (hero + footer)
+      const bookingHTML = `${s.bookingLabel}&nbsp;<a href="tel:3476375869" style="color:#c2410c;font-weight:700;letter-spacing:0.05em;" onmouseover="this.style.color='#ea580c'" onmouseout="this.style.color='#c2410c'">347 637 5869</a>`;
+      document.getElementById('booking-label').innerHTML = bookingHTML;
+      document.getElementById('footer-booking-label').innerHTML = bookingHTML;
 
       // Nav links labels
       document.querySelectorAll('.nav-link').forEach(a => {
