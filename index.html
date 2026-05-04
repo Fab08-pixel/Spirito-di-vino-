@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spirito Di Vino — Wine Bar</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Barlow:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
             brand: {
-              bg:      '#121212',
+              bg: '#121212',
               surface: '#1c1c1c',
-              card:    '#242424',
-              border:  '#2e2e2e',
-              accent:  '#c2410c',
+              card: '#242424',
+              border: '#2e2e2e',
+              accent: '#c2410c',
               'accent-light': '#ea580c',
-              'accent-dim':   '#7c2d12',
-              muted:   '#6b6b6b',
-              text:    '#e8e0d5',
+              'accent-dim': '#7c2d12',
+              muted: '#6b6b6b',
+              text: '#e8e0d5',
               'text-dim': '#a09888',
             }
           },
           fontFamily: {
             display: ['"Playfair Display"', 'serif'],
-            body:    ['Barlow', 'sans-serif'],
+            body: ['Barlow', 'sans-serif'],
           },
         }
       }
     }
   </script>
   <style>
-    * { scroll-behavior: smooth; }
-    body { background-color: #121212; color: #e8e0d5; font-family: 'Barlow', sans-serif; }
+    * {
+      scroll-behavior: smooth;
+    }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #1c1c1c; }
-    ::-webkit-scrollbar-thumb { background: #c2410c; border-radius: 2px; }
+    body {
+      background-color: #121212;
+      color: #e8e0d5;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1c1c1c;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #c2410c;
+      border-radius: 2px;
+    }
 
     /* ── NAVBAR ── */
     #navbar {
-      background: rgba(18,18,18,0.95);
+      background: rgba(18, 18, 18, 0.95);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid #2e2e2e;
@@ -50,60 +69,130 @@
 
     .nav-link {
       color: #a09888;
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.3rem 0.6rem; border-radius: 2px;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.6rem;
+      border-radius: 2px;
       transition: color 0.2s, background 0.2s;
-      white-space: nowrap; display: block;
+      white-space: nowrap;
+      display: block;
     }
-    .nav-link:hover, .nav-link.active { color: #ea580c; background: rgba(194,65,12,0.08); }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ea580c;
+      background: rgba(194, 65, 12, 0.08);
+    }
 
     /* Hamburger button */
     #menu-toggle {
-      display: none; flex-direction: column;
-      justify-content: center; gap: 5px;
-      width: 36px; height: 36px; cursor: pointer;
-      padding: 6px; border-radius: 4px;
-      transition: background 0.2s; background: transparent; border: none;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      transition: background 0.2s;
+      background: transparent;
+      border: none;
     }
-    #menu-toggle:hover { background: rgba(194,65,12,0.1); }
+
+    #menu-toggle:hover {
+      background: rgba(194, 65, 12, 0.1);
+    }
+
     #menu-toggle span {
-      display: block; height: 1.5px;
-      background: #a09888; border-radius: 2px;
+      display: block;
+      height: 1.5px;
+      background: #a09888;
+      border-radius: 2px;
       transition: transform 0.3s, opacity 0.3s, background 0.2s;
     }
-    #menu-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: #c2410c; }
-    #menu-toggle.open span:nth-child(2) { opacity: 0; }
-    #menu-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: #c2410c; }
+
+    #menu-toggle.open span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+      background: #c2410c;
+    }
+
+    #menu-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    #menu-toggle.open span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+      background: #c2410c;
+    }
 
     /* Mobile dropdown */
     #mobile-menu {
-      display: none; position: absolute;
-      top: 100%; left: 0; right: 0;
-      background: rgba(14,14,14,0.99);
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(14, 14, 14, 0.99);
       border-bottom: 1px solid #2e2e2e;
-      padding: 0.75rem 1rem 1.25rem; z-index: 100;
+      padding: 0.75rem 1rem 1.25rem;
+      z-index: 100;
     }
-    #mobile-menu.open { display: block; }
+
+    #mobile-menu.open {
+      display: block;
+    }
+
     .mobile-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 4px;
     }
-    .mobile-grid .nav-link { text-align: center; padding: 0.6rem 0.4rem; font-size: 0.64rem; }
+
+    .mobile-grid .nav-link {
+      text-align: center;
+      padding: 0.6rem 0.4rem;
+      font-size: 0.64rem;
+    }
 
     @media (min-width: 768px) {
-      #desktop-links { display: flex !important; flex-wrap: wrap; gap: 2px; align-items: center; }
-      #menu-toggle   { display: none !important; }
-      #mobile-menu   { display: none !important; }
+      #desktop-links {
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 2px;
+        align-items: center;
+      }
+
+      #menu-toggle {
+        display: none !important;
+      }
+
+      #mobile-menu {
+        display: none !important;
+      }
     }
+
     @media (max-width: 767px) {
-      #desktop-links { display: none !important; }
-      #menu-toggle   { display: flex !important; }
+      #desktop-links {
+        display: none !important;
+      }
+
+      #menu-toggle {
+        display: flex !important;
+      }
     }
 
     /* ── HERO ── */
-    .hero-line { width: 60px; height: 1px; background: #c2410c; display: inline-block; vertical-align: middle; margin: 0 12px; }
+    .hero-line {
+      width: 60px;
+      height: 1px;
+      background: #c2410c;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 12px;
+    }
 
     /* ── LANGUAGE SWITCHER ── */
     .lang-switcher {
@@ -113,6 +202,7 @@
       gap: 20px;
       margin-top: 1.6rem;
     }
+
     .lang-btn {
       display: flex;
       flex-direction: column;
@@ -126,56 +216,234 @@
       transition: background 0.2s, transform 0.15s;
       position: relative;
     }
-    .lang-btn:hover { background: rgba(194,65,12,0.08); transform: scale(1.05); }
-    .lang-btn.active { background: rgba(194,65,12,0.12); }
-    .lang-btn .flag { font-size: 2.6rem; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)); transition: filter 0.2s; }
-    .lang-btn:not(.active) .flag { filter: grayscale(0.5) drop-shadow(0 2px 6px rgba(0,0,0,0.5)); opacity: 0.5; }
-    .lang-btn.active .flag { filter: drop-shadow(0 2px 10px rgba(194,65,12,0.4)); opacity: 1; }
+
+    .lang-btn:hover {
+      background: rgba(194, 65, 12, 0.08);
+      transform: scale(1.05);
+    }
+
+    .lang-btn.active {
+      background: rgba(194, 65, 12, 0.12);
+    }
+
+    .lang-btn .flag {
+      font-size: 2.6rem;
+      line-height: 1;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+      transition: filter 0.2s;
+    }
+
+    .lang-btn:not(.active) .flag {
+      filter: grayscale(0.5) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+      opacity: 0.5;
+    }
+
+    .lang-btn.active .flag {
+      filter: drop-shadow(0 2px 10px rgba(194, 65, 12, 0.4));
+      opacity: 1;
+    }
+
     .lang-divider-dot {
-      width: 4px; height: 4px; border-radius: 50%;
-      background: #2e2e2e; flex-shrink: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #2e2e2e;
+      flex-shrink: 0;
     }
 
     /* ── SECTION ── */
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,5vw,2.4rem); font-weight: 900; color: #e8e0d5; letter-spacing: -0.01em; }
-    .cat-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 2rem; }
-    .cat-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, #2e2e2e, transparent); }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      font-weight: 900;
+      color: #e8e0d5;
+      letter-spacing: -0.01em;
+    }
+
+    .cat-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 2rem;
+    }
+
+    .cat-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, #2e2e2e, transparent);
+    }
 
     /* ── CARDS ── */
     .menu-card {
-      background: #1c1c1c; border: 1px solid #2e2e2e; border-radius: 4px;
-      padding: 1.1rem 1.2rem; transition: border-color 0.2s, transform 0.2s;
-      position: relative; overflow: hidden;
+      background: #1c1c1c;
+      border: 1px solid #2e2e2e;
+      border-radius: 4px;
+      padding: 1.1rem 1.2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
     }
-    .menu-card::before { content: ''; position: absolute; left:0; top:0; bottom:0; width: 2px; background: #c2410c; opacity: 0; transition: opacity 0.2s; }
-    .menu-card:hover { border-color: #c2410c; transform: translateX(2px); }
-    .menu-card:hover::before { opacity: 1; }
-    .item-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1rem; color: #e8e0d5; line-height: 1.3; }
-    .item-desc { font-size: 0.8rem; color: #a09888; font-weight: 300; margin-top: 0.2rem; line-height: 1.5; }
-    .item-price { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #c2410c; white-space: nowrap; }
 
-    .alg { color: #c2410c; font-size: 0.58rem; font-weight: 700; vertical-align: super; letter-spacing: 0; font-family: 'Barlow', sans-serif; }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #c2410c;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
 
-    .badge-new { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; color: #c2410c; border: 1px solid #c2410c; padding: 0 5px; border-radius: 2px; vertical-align: middle; margin-left: 6px; text-transform: uppercase; }
-    .sub-header { font-family: 'Barlow', sans-serif; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #c2410c; border-bottom: 1px solid #2e2e2e; padding-bottom: 0.4rem; margin: 1.8rem 0 1rem; }
+    .menu-card:hover {
+      border-color: #c2410c;
+      transform: translateX(2px);
+    }
 
-    .section-fade { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .section-fade.visible { opacity: 1; transform: none; }
+    .menu-card:hover::before {
+      opacity: 1;
+    }
 
-    .vine-separator { text-align: center; color: #2e2e2e; letter-spacing: 0.3em; font-size: 0.9rem; margin: 1.5rem 0; }
+    .item-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #e8e0d5;
+      line-height: 1.3;
+    }
+
+    .item-desc {
+      font-size: 0.8rem;
+      color: #a09888;
+      font-weight: 300;
+      margin-top: 0.2rem;
+      line-height: 1.5;
+    }
+
+    .item-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #c2410c;
+      white-space: nowrap;
+    }
+
+    .alg {
+      color: #c2410c;
+      font-size: 0.58rem;
+      font-weight: 700;
+      vertical-align: super;
+      letter-spacing: 0;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    .badge-new {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #c2410c;
+      border: 1px solid #c2410c;
+      padding: 0 5px;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-left: 6px;
+      text-transform: uppercase;
+    }
+
+    .sub-header {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c2410c;
+      border-bottom: 1px solid #2e2e2e;
+      padding-bottom: 0.4rem;
+      margin: 1.8rem 0 1rem;
+    }
+
+    .section-fade {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .section-fade.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .vine-separator {
+      text-align: center;
+      color: #2e2e2e;
+      letter-spacing: 0.3em;
+      font-size: 0.9rem;
+      margin: 1.5rem 0;
+    }
 
     /* ── ALLERGENI ── */
-    #allergeni { scroll-margin-top: 90px; }
-    .alg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px; }
-    .alg-item { background: #1c1c1c; border: 1px solid #2e2e2e; border-radius: 4px; padding: 0.7rem 1rem; display: flex; align-items: center; gap: 12px; }
-    .alg-code { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.15rem; color: #c2410c; min-width: 20px; }
-    .alg-name { font-size: 0.78rem; font-weight: 500; color: #e8e0d5; line-height: 1.3; }
-    .alg-detail { font-size: 0.67rem; color: #6b6b6b; font-weight: 300; margin-top: 1px; }
-    .alg-notice { font-size: 0.72rem; color: #6b6b6b; line-height: 1.7; margin-top: 1.25rem; border-top: 1px solid #2e2e2e; padding-top: 1rem; }
-    .alg-notice strong { color: #a09888; }
+    #allergeni {
+      scroll-margin-top: 90px;
+    }
+
+    .alg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 8px;
+    }
+
+    .alg-item {
+      background: #1c1c1c;
+      border: 1px solid #2e2e2e;
+      border-radius: 4px;
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .alg-code {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.15rem;
+      color: #c2410c;
+      min-width: 20px;
+    }
+
+    .alg-name {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #e8e0d5;
+      line-height: 1.3;
+    }
+
+    .alg-detail {
+      font-size: 0.67rem;
+      color: #6b6b6b;
+      font-weight: 300;
+      margin-top: 1px;
+    }
+
+    .alg-notice {
+      font-size: 0.72rem;
+      color: #6b6b6b;
+      line-height: 1.7;
+      margin-top: 1.25rem;
+      border-top: 1px solid #2e2e2e;
+      padding-top: 1rem;
+    }
+
+    .alg-notice strong {
+      color: #a09888;
+    }
 
     /* Lang transition */
-    [data-lang] { transition: opacity 0.25s ease; }
+    [data-lang] {
+      transition: opacity 0.25s ease;
+    }
 
     /* ── LANG LABEL under flag ── */
     .lang-btn .lang-label {
@@ -185,99 +453,171 @@
       font-weight: 600;
       transition: color 0.2s;
     }
-    .lang-btn.active .lang-label { color: #c2410c; }
-    .lang-btn:not(.active) .lang-label { color: #6b6b6b; }
+
+    .lang-btn.active .lang-label {
+      color: #c2410c;
+    }
+
+    .lang-btn:not(.active) .lang-label {
+      color: #6b6b6b;
+    }
 
     /* ══════════════════════════════════════════
        SPLASH SCREEN
     ══════════════════════════════════════════ */
     #splash {
-      position: fixed; inset: 0; z-index: 9999;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
       background: #0a0a0a;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
       transition: opacity 0.9s ease, visibility 0.9s ease;
     }
-    #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    #splash.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
 
     /* Ambient glow orbs */
     .splash-orb {
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); pointer-events: none;
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
     }
+
     .splash-orb-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(194,65,12,0.18) 0%, transparent 70%);
-      top: -120px; left: 50%; transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(194, 65, 12, 0.18) 0%, transparent 70%);
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
       animation: orb-pulse 6s ease-in-out infinite;
     }
+
     .splash-orb-2 {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(194,65,12,0.08) 0%, transparent 70%);
-      bottom: 60px; right: -60px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(194, 65, 12, 0.08) 0%, transparent 70%);
+      bottom: 60px;
+      right: -60px;
       animation: orb-pulse 8s ease-in-out infinite reverse;
     }
+
     @keyframes orb-pulse {
-      0%, 100% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-      50%       { opacity: 1;   transform: translateX(-50%) scale(1.12); }
+
+      0%,
+      100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.12);
+      }
     }
-    .splash-orb-2 { animation: orb-pulse2 8s ease-in-out infinite reverse; }
+
+    .splash-orb-2 {
+      animation: orb-pulse2 8s ease-in-out infinite reverse;
+    }
+
     @keyframes orb-pulse2 {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50%       { opacity: 0.9; transform: scale(1.1); }
+
+      0%,
+      100% {
+        opacity: 0.5;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.9;
+        transform: scale(1.1);
+      }
     }
 
     /* Grain overlay */
     #splash::before {
       content: '';
-      position: absolute; inset: 0; z-index: 1;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
       background-size: 200px;
-      opacity: 0.5; pointer-events: none;
+      opacity: 0.5;
+      pointer-events: none;
     }
 
     /* Fine horizontal rule */
     .splash-rule {
-      width: 0; height: 1px;
+      width: 0;
+      height: 1px;
       background: linear-gradient(to right, transparent, #c2410c, transparent);
-      animation: rule-expand 1s cubic-bezier(0.22,1,0.36,1) 1.4s forwards;
+      animation: rule-expand 1s cubic-bezier(0.22, 1, 0.36, 1) 1.4s forwards;
       margin: 1.4rem 0;
     }
-    @keyframes rule-expand { to { width: 180px; } }
+
+    @keyframes rule-expand {
+      to {
+        width: 180px;
+      }
+    }
 
     /* Content wrapper */
     .splash-content {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column;
-      align-items: center; text-align: center;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       padding: 0 2rem;
     }
 
     /* Eye-catcher top label */
     .splash-eyebrow {
-      font-size: 0.6rem; letter-spacing: 0.35em;
-      text-transform: uppercase; color: #c2410c;
-      opacity: 0; transform: translateY(10px);
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #c2410c;
+      opacity: 0;
+      transform: translateY(10px);
       animation: fade-up 0.7s ease 0.3s forwards;
-      font-family: 'Barlow', sans-serif; font-weight: 500;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 500;
     }
 
     /* Main title */
     .splash-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(3.2rem, 14vw, 7rem);
-      font-weight: 900; line-height: 0.92;
-      color: #e8e0d5; letter-spacing: -0.02em;
-      opacity: 0; transform: translateY(24px);
-      animation: fade-up 0.9s cubic-bezier(0.22,1,0.36,1) 0.55s forwards;
+      font-weight: 900;
+      line-height: 0.92;
+      color: #e8e0d5;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
     }
-    .splash-title em { color: #c2410c; font-style: italic; }
+
+    .splash-title em {
+      color: #c2410c;
+      font-style: italic;
+    }
 
     /* Subtitle bar */
     .splash-subtitle {
-      font-size: 0.65rem; letter-spacing: 0.3em;
-      text-transform: uppercase; color: #6b6b6b;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #6b6b6b;
       opacity: 0;
       animation: fade-in 0.7s ease 1.5s forwards;
       font-family: 'Barlow', sans-serif;
@@ -285,8 +625,10 @@
 
     /* Tagline */
     .splash-tagline {
-      font-size: 0.82rem; color: #a09888;
-      font-weight: 300; line-height: 1.7;
+      font-size: 0.82rem;
+      color: #a09888;
+      font-weight: 300;
+      line-height: 1.7;
       opacity: 0;
       animation: fade-in 0.7s ease 1.8s forwards;
       font-family: 'Barlow', sans-serif;
@@ -296,76 +638,159 @@
     /* CTA button */
     .splash-cta-wrap {
       margin-top: 2.5rem;
-      opacity: 0; transform: translateY(12px);
+      opacity: 0;
+      transform: translateY(12px);
       animation: fade-up 0.7s ease 2.2s forwards;
     }
+
     .splash-cta {
-      position: relative; display: inline-flex;
-      align-items: center; gap: 12px;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       padding: 0.95rem 2.2rem;
-      border: 1px solid rgba(194,65,12,0.6);
+      border: 1px solid rgba(194, 65, 12, 0.6);
       border-radius: 2px;
       background: transparent;
       color: #e8e0d5;
       font-family: 'Barlow', sans-serif;
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      cursor: pointer; overflow: hidden;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      overflow: hidden;
       transition: color 0.3s, border-color 0.3s;
     }
+
     .splash-cta::before {
-      content: ''; position: absolute; inset: 0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background: #c2410c;
       transform: translateX(-101%);
-      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       z-index: 0;
     }
-    .splash-cta:hover::before { transform: translateX(0); }
-    .splash-cta:hover { color: #fff; border-color: #c2410c; }
-    .splash-cta span, .splash-cta svg { position: relative; z-index: 1; }
+
+    .splash-cta:hover::before {
+      transform: translateX(0);
+    }
+
+    .splash-cta:hover {
+      color: #fff;
+      border-color: #c2410c;
+    }
+
+    .splash-cta span,
     .splash-cta svg {
-      width: 14px; height: 14px; stroke: currentColor;
-      fill: none; stroke-width: 2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .splash-cta svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
       transition: transform 0.3s;
     }
-    .splash-cta:hover svg { transform: translateX(3px); }
+
+    .splash-cta:hover svg {
+      transform: translateX(3px);
+    }
 
     /* Decorative corner marks */
     .splash-corner {
-      position: absolute; width: 24px; height: 24px;
-      opacity: 0; animation: fade-in 1s ease 2s forwards;
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      opacity: 0;
+      animation: fade-in 1s ease 2s forwards;
     }
-    .splash-corner::before, .splash-corner::after {
-      content: ''; position: absolute;
-      background: #c2410c; opacity: 0.5;
+
+    .splash-corner::before,
+    .splash-corner::after {
+      content: '';
+      position: absolute;
+      background: #c2410c;
+      opacity: 0.5;
     }
-    .splash-corner::before { width: 100%; height: 1px; top: 0; left: 0; }
-    .splash-corner::after  { width: 1px; height: 100%; top: 0; left: 0; }
-    .splash-corner.tl { top: 32px; left: 32px; }
-    .splash-corner.tr { top: 32px; right: 32px; transform: rotate(90deg); }
-    .splash-corner.bl { bottom: 32px; left: 32px; transform: rotate(-90deg); }
-    .splash-corner.br { bottom: 32px; right: 32px; transform: rotate(180deg); }
+
+    .splash-corner::before {
+      width: 100%;
+      height: 1px;
+      top: 0;
+      left: 0;
+    }
+
+    .splash-corner::after {
+      width: 1px;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .splash-corner.tl {
+      top: 32px;
+      left: 32px;
+    }
+
+    .splash-corner.tr {
+      top: 32px;
+      right: 32px;
+      transform: rotate(90deg);
+    }
+
+    .splash-corner.bl {
+      bottom: 32px;
+      left: 32px;
+      transform: rotate(-90deg);
+    }
+
+    .splash-corner.br {
+      bottom: 32px;
+      right: 32px;
+      transform: rotate(180deg);
+    }
 
     /* Bottom credits */
     .splash-bottom {
-      position: absolute; bottom: 28px; left: 0; right: 0; z-index: 2;
+      position: absolute;
+      bottom: 28px;
+      left: 0;
+      right: 0;
+      z-index: 2;
       text-align: center;
-      font-size: 0.58rem; letter-spacing: 0.2em;
-      color: #3a3a3a; text-transform: uppercase;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: #3a3a3a;
+      text-transform: uppercase;
       font-family: 'Barlow', sans-serif;
-      opacity: 0; animation: fade-in 1s ease 2.4s forwards;
+      opacity: 0;
+      animation: fade-in 1s ease 2.4s forwards;
     }
 
     /* Shared animations */
     @keyframes fade-up {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     @keyframes fade-in {
-      to { opacity: 1; }
+      to {
+        opacity: 1;
+      }
     }
 
     /* Page hidden while splash is active */
-    body.splash-active { overflow: hidden; }
+    body.splash-active {
+      overflow: hidden;
+    }
+
     body.splash-active #navbar,
     body.splash-active header,
     body.splash-active main,
@@ -375,645 +800,656 @@
     }
   </style>
 </head>
+
 <body>
 
-<!-- ══════════════════════════════════════════
+  <!-- ══════════════════════════════════════════
      SPLASH SCREEN
 ══════════════════════════════════════════ -->
-<div id="splash">
-  <div class="splash-orb splash-orb-1"></div>
-  <div class="splash-orb splash-orb-2"></div>
-  <div class="splash-corner tl"></div>
-  <div class="splash-corner tr"></div>
-  <div class="splash-corner bl"></div>
-  <div class="splash-corner br"></div>
-  <div class="splash-content">
-    <p class="splash-eyebrow">Dal vino al sapore &nbsp;·&nbsp; From wine to flavour</p>
-    <h1 class="splash-title">Spirito<br/><em>Di Vino</em></h1>
-    <div class="splash-rule"></div>
-    <p class="splash-subtitle">Wine Bar</p>
-    <p class="splash-tagline">Cucina autentica · Ingredienti selezionati · Atmosfera unica</p>
-    <div class="splash-cta-wrap">
-      <button class="splash-cta" id="splash-enter" onclick="enterMenu()">
-        <span id="splash-cta-label">Accedi al Menù</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </button>
-    </div>
-  </div>
-  <p class="splash-bottom">Spirito Di Vino &nbsp;·&nbsp; Wine Bar</p>
-</div>
-
-<!-- NAVBAR -->
-<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
-  <div class="max-w-5xl mx-auto px-4 relative">
-    <div class="flex items-center justify-between py-3 border-b border-brand-border">
-      <div class="flex items-center gap-3">
-        <span style="font-family:'Playfair Display',serif;font-size:0.95rem;letter-spacing:0.05em;color:#e8e0d5;">
-          Spirito Di Vino
-          <span style="color:#6b6b6b;font-size:0.7rem;font-family:'Barlow',sans-serif;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;"> Wine Bar</span>
-        </span>
+  <div id="splash">
+    <div class="splash-orb splash-orb-1"></div>
+    <div class="splash-orb splash-orb-2"></div>
+    <div class="splash-corner tl"></div>
+    <div class="splash-corner tr"></div>
+    <div class="splash-corner bl"></div>
+    <div class="splash-corner br"></div>
+    <div class="splash-content">
+      <p class="splash-eyebrow">Dal vino al sapore &nbsp;·&nbsp; From wine to flavour</p>
+      <h1 class="splash-title">Spirito<br /><em>Di Vino</em></h1>
+      <div class="splash-rule"></div>
+      <p class="splash-subtitle">Wine Bar</p>
+      <p class="splash-tagline">Cucina autentica · Ingredienti selezionati · Atmosfera unica</p>
+      <div class="splash-cta-wrap">
+        <button class="splash-cta" id="splash-enter" onclick="enterMenu()">
+          <span id="splash-cta-label">Accedi al Menù</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
       </div>
-      <span class="hidden md:block" id="nav-menu-label" style="font-size:0.65rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;">Menù</span>
-      <button id="menu-toggle" aria-label="Apri menù di navigazione" aria-expanded="false">
-        <span></span><span></span><span></span>
+    </div>
+    <p class="splash-bottom">Spirito Di Vino &nbsp;·&nbsp; Wine Bar</p>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-5xl mx-auto px-4 relative">
+      <div class="flex items-center justify-between py-3 border-b border-brand-border">
+        <div class="flex items-center gap-3">
+          <span style="font-family:'Playfair Display',serif;font-size:0.95rem;letter-spacing:0.05em;color:#e8e0d5;">
+            Spirito Di Vino
+            <span
+              style="color:#6b6b6b;font-size:0.7rem;font-family:'Barlow',sans-serif;font-weight:300;letter-spacing:0.15em;text-transform:uppercase;">
+              Wine Bar</span>
+          </span>
+        </div>
+        <span class="hidden md:block" id="nav-menu-label"
+          style="font-size:0.65rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;">Menù</span>
+        <button id="menu-toggle" aria-label="Apri menù di navigazione" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div id="desktop-links" class="py-2"></div>
+      <div id="mobile-menu">
+        <div class="mobile-grid" id="mobile-links"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="padding-top:7rem;padding-bottom:3.5rem;text-align:center;border-bottom:1px solid #2e2e2e;">
+    <p id="hero-tagline"
+      style="font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:#c2410c;margin-bottom:1rem;">Dal vino
+      al sapore</p>
+    <h1
+      style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,8vw,4rem);font-weight:900;line-height:1.05;color:#e8e0d5;">
+      Spirito<br /><em style="color:#c2410c;">Di Vino</em>
+    </h1>
+    <div style="margin-top:1rem;display:flex;align-items:center;justify-content:center;">
+      <span class="hero-line"></span>
+      <span style="font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:#6b6b6b;">Wine Bar</span>
+      <span class="hero-line"></span>
+    </div>
+    <p id="hero-sub"
+      style="margin-top:1.2rem;font-size:0.85rem;color:#a09888;font-weight:300;max-width:300px;margin-left:auto;margin-right:auto;line-height:1.7;">
+      Cucina autentica, ingredienti selezionati,<br />atmosfera unica.
+    </p>
+
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btn-it" onclick="setLang('it')" title="Italiano" aria-label="Italiano">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2"
+          style="width: 1.2em; height: 1.2em; border-radius: 2px; display: inline-block;">
+          <rect width="3" height="2" fill="#009246" />
+          <rect width="2" height="2" x="1" fill="#fff" />
+          <rect width="1" height="2" x="2" fill="#ce2b37" />
+        </svg>
+      </button>
+      <div class="lang-divider-dot"></div>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English" aria-label="English">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"
+          style="width: 1.2em; height: 1.2em; border-radius: 2px; display: inline-block;">
+          <clipPath id="t">
+            <path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z" />
+          </clipPath>
+          <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
+          <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
+        </svg>
       </button>
     </div>
-    <div id="desktop-links" class="py-2"></div>
-    <div id="mobile-menu">
-      <div class="mobile-grid" id="mobile-links"></div>
+  </header>
+
+  <!-- MENU ROOT -->
+  <main id="menu-root" class="max-w-5xl mx-auto px-4 py-12"></main>
+
+  <!-- ALLERGENI / ALLERGENS -->
+  <section id="allergeni" class="max-w-5xl mx-auto px-4 pb-16 section-fade">
+    <div class="vine-separator" style="margin-bottom:2rem;">· · ·</div>
+    <div class="cat-divider">
+      <div>
+        <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#c2410c;margin-bottom:0.2rem;">⚠
+        </p>
+        <h2 class="section-title" id="allergen-title">Allergeni</h2>
+      </div>
     </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header style="padding-top:7rem;padding-bottom:3.5rem;text-align:center;border-bottom:1px solid #2e2e2e;">
-  <p id="hero-tagline" style="font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:#c2410c;margin-bottom:1rem;">Dal vino al sapore</p>
-  <h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,8vw,4rem);font-weight:900;line-height:1.05;color:#e8e0d5;">
-    Spirito<br/><em style="color:#c2410c;">Di Vino</em>
-  </h1>
-  <div style="margin-top:1rem;display:flex;align-items:center;justify-content:center;">
-    <span class="hero-line"></span>
-    <span style="font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:#6b6b6b;">Wine Bar</span>
-    <span class="hero-line"></span>
-  </div>
-  <p id="hero-sub" style="margin-top:1.2rem;font-size:0.85rem;color:#a09888;font-weight:300;max-width:300px;margin-left:auto;margin-right:auto;line-height:1.7;">
-    Cucina autentica, ingredienti selezionati,<br/>atmosfera unica.
-  </p>
-
-  <!-- LANGUAGE SWITCHER -->
-  <div class="lang-switcher">
-    <button class="lang-btn active" id="btn-it" onclick="setLang('it')" title="Italiano" aria-label="Italiano">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" style="width: 1.2em; height: 1.2em; border-radius: 2px; display: inline-block;">
-  <rect width="3" height="2" fill="#009246"/>
-  <rect width="2" height="2" x="1" fill="#fff"/>
-  <rect width="1" height="2" x="2" fill="#ce2b37"/>
-</svg>
-    </button>
-    <div class="lang-divider-dot"></div>
-    <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English" aria-label="English">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" style="width: 1.2em; height: 1.2em; border-radius: 2px; display: inline-block;">
-  <clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath>
-  <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-  <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-  <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
-  <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-  <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-</svg>
-    </button>
-  </div>
-</header>
-
-<!-- MENU ROOT -->
-<main id="menu-root" class="max-w-5xl mx-auto px-4 py-12"></main>
-
-<!-- ALLERGENI / ALLERGENS -->
-<section id="allergeni" class="max-w-5xl mx-auto px-4 pb-16 section-fade">
-  <div class="vine-separator" style="margin-bottom:2rem;">· · ·</div>
-  <div class="cat-divider">
-    <div>
-      <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#c2410c;margin-bottom:0.2rem;">⚠</p>
-      <h2 class="section-title" id="allergen-title">Allergeni</h2>
+    <p id="allergen-intro" style="font-size:0.78rem;color:#a09888;margin-bottom:1.25rem;line-height:1.6;">
+      I 14 allergeni regolamentati dal <strong style="color:#e8e0d5;">Reg. UE 1169/2011</strong>.
+      Nelle descrizioni del menù, gli ingredienti allergeni sono marcati con il codice lettera in apice
+      (es. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tonno<sup class="alg">D</sup></em>).
+    </p>
+    <div class="alg-grid" id="alg-grid"></div>
+    <div class="alg-notice" id="allergen-notice">
+      <strong>Contaminazione crociata:</strong> i nostri piatti vengono preparati in cucine dove sono presenti tutti i
+      14 allergeni elencati.<br />
+      Se soffri di allergie o intolleranze alimentari, <strong>informa il personale prima di ordinare</strong>.
     </div>
-  </div>
-  <p id="allergen-intro" style="font-size:0.78rem;color:#a09888;margin-bottom:1.25rem;line-height:1.6;">
-    I 14 allergeni regolamentati dal <strong style="color:#e8e0d5;">Reg. UE 1169/2011</strong>.
-    Nelle descrizioni del menù, gli ingredienti allergeni sono marcati con il codice lettera in apice
-    (es. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tonno<sup class="alg">D</sup></em>).
-  </p>
-  <div class="alg-grid" id="alg-grid"></div>
-  <div class="alg-notice" id="allergen-notice">
-    <strong>Contaminazione crociata:</strong> i nostri piatti vengono preparati in cucine dove sono presenti tutti i 14 allergeni elencati.<br/>
-    Se soffri di allergie o intolleranze alimentari, <strong>informa il personale prima di ordinare</strong>.
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer style="border-top:1px solid #2e2e2e;padding:2.5rem 1rem;text-align:center;margin-top:1rem;">
-  <div class="vine-separator">· · ·</div>
-  <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#e8e0d5;font-style:italic;">Spirito Di Vino</p>
-  <p style="font-size:0.7rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.25rem;">Wine Bar</p>
-  <p id="footer-note" style="font-size:0.72rem;color:#6b6b6b;margin-top:1rem;">I prezzi sono IVA inclusa · Menù soggetto a variazioni stagionali</p>
-</footer>
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid #2e2e2e;padding:2.5rem 1rem;text-align:center;margin-top:1rem;">
+    <div class="vine-separator">· · ·</div>
+    <p style="font-family:'Playfair Display',serif;font-size:1.1rem;color:#e8e0d5;font-style:italic;">Spirito Di Vino
+    </p>
+    <p style="font-size:0.7rem;color:#6b6b6b;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.25rem;">Wine Bar
+    </p>
+    <p id="footer-note" style="font-size:0.72rem;color:#6b6b6b;margin-top:1rem;">I prezzi sono IVA inclusa · Menù
+      soggetto a variazioni stagionali</p>
+  </footer>
 
-<script>
-// ── Current language ─────────────────────────────────────
-let currentLang = 'it';
+  <script>
+    // ── Current language ─────────────────────────────────────
+    let currentLang = 'it';
 
-// ── UI strings ───────────────────────────────────────────
-const uiStrings = {
-  it: {
-    navMenuLabel:    'Menù',
-    heroTagline:     'Dal vino al sapore',
-    heroSub:         'Cucina autentica, ingredienti selezionati,<br/>atmosfera unica.',
-    allergenTitle:   'Allergeni',
-    allergenIntro:   'I 14 allergeni regolamentati dal <strong style="color:#e8e0d5;">Reg. UE 1169/2011</strong>. Nelle descrizioni del menù, gli ingredienti allergeni sono marcati con il codice lettera in apice (es. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tonno<sup class="alg">D</sup></em>).',
-    allergenNotice:  '<strong>Contaminazione crociata:</strong> i nostri piatti vengono preparati in cucine dove sono presenti tutti i 14 allergeni elencati.<br/>Se soffri di allergie o intolleranze alimentari, <strong>informa il personale prima di ordinare</strong>.',
-    footerNote:      'I prezzi sono IVA inclusa · Menù soggetto a variazioni stagionali',
-    badgeNew:        'Novità',
-  },
-  en: {
-    navMenuLabel:    'Menu',
-    heroTagline:     'From wine to flavour',
-    heroSub:         'Authentic cuisine, selected ingredients,<br/>a unique atmosphere.',
-    allergenTitle:   'Allergens',
-    allergenIntro:   'The 14 allergens regulated by <strong style="color:#e8e0d5;">EU Reg. 1169/2011</strong>. In the menu descriptions, allergenic ingredients are marked with a letter code in superscript (e.g. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tuna<sup class="alg">D</sup></em>).',
-    allergenNotice:  '<strong>Cross-contamination:</strong> our dishes are prepared in kitchens where all 14 listed allergens are present.<br/>If you suffer from food allergies or intolerances, <strong>please inform staff before ordering</strong>.',
-    footerNote:      'Prices include VAT · Menu subject to seasonal changes',
-    badgeNew:        'New',
-  }
-};
+    // ── UI strings ───────────────────────────────────────────
+    const uiStrings = {
+      it: {
+        navMenuLabel: 'Menù',
+        heroTagline: 'Dal vino al sapore',
+        heroSub: 'Cucina autentica, ingredienti selezionati,<br/>atmosfera unica.',
+        allergenTitle: 'Allergeni',
+        allergenIntro: 'I 14 allergeni regolamentati dal <strong style="color:#e8e0d5;">Reg. UE 1169/2011</strong>. Nelle descrizioni del menù, gli ingredienti allergeni sono marcati con il codice lettera in apice (es. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tonno<sup class="alg">D</sup></em>).',
+        allergenNotice: '<strong>Contaminazione crociata:</strong> i nostri piatti vengono preparati in cucine dove sono presenti tutti i 14 allergeni elencati.<br/>Se soffri di allergie o intolleranze alimentari, <strong>informa il personale prima di ordinare</strong>.',
+        footerNote: 'I prezzi sono IVA inclusa · Menù soggetto a variazioni stagionali',
+        badgeNew: 'Novità',
+      },
+      en: {
+        navMenuLabel: 'Menu',
+        heroTagline: 'From wine to flavour',
+        heroSub: 'Authentic cuisine, selected ingredients,<br/>a unique atmosphere.',
+        allergenTitle: 'Allergens',
+        allergenIntro: 'The 14 allergens regulated by <strong style="color:#e8e0d5;">EU Reg. 1169/2011</strong>. In the menu descriptions, allergenic ingredients are marked with a letter code in superscript (e.g. <em>Mozzarella<sup class="alg">G</sup></em>, <em>Tuna<sup class="alg">D</sup></em>).',
+        allergenNotice: '<strong>Cross-contamination:</strong> our dishes are prepared in kitchens where all 14 listed allergens are present.<br/>If you suffer from food allergies or intolerances, <strong>please inform staff before ordering</strong>.',
+        footerNote: 'Prices include VAT · Menu subject to seasonal changes',
+        badgeNew: 'New',
+      }
+    };
 
-// ── Allergen data ────────────────────────────────────────
-const allergenData = [
-  { code:'A', it:{ name:'Glutine', detail:'Frumento, segale, orzo, avena, farro, kamut' }, en:{ name:'Gluten', detail:'Wheat, rye, barley, oats, spelt, kamut' } },
-  { code:'B', it:{ name:'Crostacei', detail:'Gamberi, granchi, aragoste, scampi' }, en:{ name:'Crustaceans', detail:'Shrimp, crabs, lobsters, langoustines' } },
-  { code:'C', it:{ name:'Uova', detail:'Uova e prodotti a base di uova' }, en:{ name:'Eggs', detail:'Eggs and egg-based products' } },
-  { code:'D', it:{ name:'Pesce', detail:'Pesce e prodotti a base di pesce' }, en:{ name:'Fish', detail:'Fish and fish-based products' } },
-  { code:'E', it:{ name:'Arachidi', detail:'Arachidi e prodotti a base di arachidi' }, en:{ name:'Peanuts', detail:'Peanuts and peanut-based products' } },
-  { code:'F', it:{ name:'Soia', detail:'Soia e prodotti a base di soia' }, en:{ name:'Soy', detail:'Soy and soy-based products' } },
-  { code:'G', it:{ name:'Latte', detail:'Latte e derivati (incluso lattosio)' }, en:{ name:'Milk', detail:'Milk and dairy products (incl. lactose)' } },
-  { code:'H', it:{ name:'Frutta a guscio', detail:'Mandorle, nocciole, noci, anacardi, pistacchi…' }, en:{ name:'Tree nuts', detail:'Almonds, hazelnuts, walnuts, cashews, pistachios…' } },
-  { code:'I', it:{ name:'Sedano', detail:'Sedano e prodotti a base di sedano' }, en:{ name:'Celery', detail:'Celery and celery-based products' } },
-  { code:'J', it:{ name:'Senape', detail:'Senape e prodotti a base di senape' }, en:{ name:'Mustard', detail:'Mustard and mustard-based products' } },
-  { code:'K', it:{ name:'Semi di sesamo', detail:'Semi di sesamo e prodotti derivati' }, en:{ name:'Sesame seeds', detail:'Sesame seeds and derived products' } },
-  { code:'L', it:{ name:'Anidride solforosa / Solfiti', detail:'Concentrazioni > 10 mg/kg o 10 mg/l' }, en:{ name:'Sulphur dioxide / Sulphites', detail:'Concentrations > 10 mg/kg or 10 mg/l' } },
-  { code:'M', it:{ name:'Lupini', detail:'Lupini e prodotti a base di lupini' }, en:{ name:'Lupin', detail:'Lupin and lupin-based products' } },
-  { code:'N', it:{ name:'Molluschi', detail:'Molluschi e prodotti a base di molluschi' }, en:{ name:'Molluscs', detail:'Molluscs and mollusc-based products' } },
-];
+    // ── Allergen data ────────────────────────────────────────
+    const allergenData = [
+      { code: 'A', it: { name: 'Glutine', detail: 'Frumento, segale, orzo, avena, farro, kamut' }, en: { name: 'Gluten', detail: 'Wheat, rye, barley, oats, spelt, kamut' } },
+      { code: 'B', it: { name: 'Crostacei', detail: 'Gamberi, granchi, aragoste, scampi' }, en: { name: 'Crustaceans', detail: 'Shrimp, crabs, lobsters, langoustines' } },
+      { code: 'C', it: { name: 'Uova', detail: 'Uova e prodotti a base di uova' }, en: { name: 'Eggs', detail: 'Eggs and egg-based products' } },
+      { code: 'D', it: { name: 'Pesce', detail: 'Pesce e prodotti a base di pesce' }, en: { name: 'Fish', detail: 'Fish and fish-based products' } },
+      { code: 'E', it: { name: 'Arachidi', detail: 'Arachidi e prodotti a base di arachidi' }, en: { name: 'Peanuts', detail: 'Peanuts and peanut-based products' } },
+      { code: 'F', it: { name: 'Soia', detail: 'Soia e prodotti a base di soia' }, en: { name: 'Soy', detail: 'Soy and soy-based products' } },
+      { code: 'G', it: { name: 'Latte', detail: 'Latte e derivati (incluso lattosio)' }, en: { name: 'Milk', detail: 'Milk and dairy products (incl. lactose)' } },
+      { code: 'H', it: { name: 'Frutta a guscio', detail: 'Mandorle, nocciole, noci, anacardi, pistacchi…' }, en: { name: 'Tree nuts', detail: 'Almonds, hazelnuts, walnuts, cashews, pistachios…' } },
+      { code: 'I', it: { name: 'Sedano', detail: 'Sedano e prodotti a base di sedano' }, en: { name: 'Celery', detail: 'Celery and celery-based products' } },
+      { code: 'J', it: { name: 'Senape', detail: 'Senape e prodotti a base di senape' }, en: { name: 'Mustard', detail: 'Mustard and mustard-based products' } },
+      { code: 'K', it: { name: 'Semi di sesamo', detail: 'Semi di sesamo e prodotti derivati' }, en: { name: 'Sesame seeds', detail: 'Sesame seeds and derived products' } },
+      { code: 'L', it: { name: 'Anidride solforosa / Solfiti', detail: 'Concentrazioni > 10 mg/kg o 10 mg/l' }, en: { name: 'Sulphur dioxide / Sulphites', detail: 'Concentrations > 10 mg/kg or 10 mg/l' } },
+      { code: 'M', it: { name: 'Lupini', detail: 'Lupini e prodotti a base di lupini' }, en: { name: 'Lupin', detail: 'Lupin and lupin-based products' } },
+      { code: 'N', it: { name: 'Molluschi', detail: 'Molluschi e prodotti a base di molluschi' }, en: { name: 'Molluscs', detail: 'Molluscs and mollusc-based products' } },
+    ];
 
-// ── Allergen auto-annotation ─────────────────────────────
-const allergenRules = [
-  { re: /\b(mozzarella|scamorza(?:\s+affumicata)?|cheddar|caciocavallo|provolone(?:\s+piccante)?|grana|emmental|gorgonzola|burrata|burratina|stracciatella|philadelphia|taleggio|galbanone|galbanino|provola(?:\s+dolce)?|crema di pistacchio|salsa\s+yogurt|yogurt)\b/gi, code: 'G' },
-  { re: /\b(hamburger|pane|baguette|wrap|piada|piadina|panzerott\w*|crocch\w*|polpett\w*|chips\s+di\s+zucchina|ketchup|cotoletta|wustel)\b/gi, code: 'A' },
-  { re: /\b(tonno|salsa\s+tonnata|acciughe|baccalà|salmone)\b/gi, code: 'D' },
-  { re: /\b(gamberetti|gambero|scampi|granchio)\b/gi, code: 'B' },
-  { re: /\b(maionese|uova|uovo)\b/gi, code: 'C' },
-  { re: /\b(pistacchio|crema\s+di\s+pistacchio|nocciola|mandorla|noci)\b/gi, code: 'H' },
-  { re: /\b(senape|honey\s+mustard)\b/gi, code: 'J' },
-  { re: /\b(prosecco|glassa\s+di\s+aceto|aceto\s+balsamico)\b/gi, code: 'L' },
-  { re: /\b(salsa\s+bbq)\b/gi, code: 'F' },
-  { re: /\b(giardiniera)\b/gi, code: 'I' },
-  // English patterns
-  { re: /\b(mozzarella|smoked scamorza|cheddar|caciocavallo|provola|grana|emmental|gorgonzola|burrata|stracciatella|philadelphia|taleggio|galbanone|galbanino|pistachio cream|yogurt sauce|yogurt)\b/gi, code: 'G' },
-  { re: /\b(bun|wrap|flatbread|breaded chicken|hot dog|ketchup|croutons|breadcrumbs)\b/gi, code: 'A' },
-  { re: /\b(tuna|tuna sauce|anchovies|cod|salmon)\b/gi, code: 'D' },
-  { re: /\b(shrimp|prawns|scampi|crab)\b/gi, code: 'B' },
-  { re: /\b(mayonnaise|eggs|egg)\b/gi, code: 'C' },
-  { re: /\b(pistachio|hazelnuts|almonds|walnuts)\b/gi, code: 'H' },
-  { re: /\b(mustard|honey mustard)\b/gi, code: 'J' },
-  { re: /\b(prosecco|balsamic glaze|balsamic vinegar)\b/gi, code: 'L' },
-  { re: /\b(bbq sauce)\b/gi, code: 'F' },
-  { re: /\b(pickled vegetables)\b/gi, code: 'I' },
-];
+    // ── Allergen auto-annotation ─────────────────────────────
+    const allergenRules = [
+      { re: /\b(mozzarella|scamorza(?:\s+affumicata)?|cheddar|caciocavallo|provolone(?:\s+piccante)?|grana|emmental|gorgonzola|burrata|burratina|stracciatella|philadelphia|taleggio|galbanone|galbanino|provola(?:\s+dolce)?|crema di pistacchio|salsa\s+yogurt|yogurt)\b/gi, code: 'G' },
+      { re: /\b(hamburger|pane|baguette|wrap|piada|piadina|panzerott\w*|crocch\w*|polpett\w*|chips\s+di\s+zucchina|ketchup|cotoletta|wustel)\b/gi, code: 'A' },
+      { re: /\b(tonno|salsa\s+tonnata|acciughe|baccalà|salmone)\b/gi, code: 'D' },
+      { re: /\b(gamberetti|gambero|scampi|granchio)\b/gi, code: 'B' },
+      { re: /\b(maionese|uova|uovo)\b/gi, code: 'C' },
+      { re: /\b(pistacchio|crema\s+di\s+pistacchio|nocciola|mandorla|noci)\b/gi, code: 'H' },
+      { re: /\b(senape|honey\s+mustard)\b/gi, code: 'J' },
+      { re: /\b(prosecco|glassa\s+di\s+aceto|aceto\s+balsamico)\b/gi, code: 'L' },
+      { re: /\b(salsa\s+bbq)\b/gi, code: 'F' },
+      { re: /\b(giardiniera)\b/gi, code: 'I' },
+      // English patterns
+      { re: /\b(mozzarella|smoked scamorza|cheddar|caciocavallo|provola|grana|emmental|gorgonzola|burrata|stracciatella|philadelphia|taleggio|galbanone|galbanino|pistachio cream|yogurt sauce|yogurt)\b/gi, code: 'G' },
+      { re: /\b(bun|wrap|flatbread|breaded chicken|hot dog|ketchup|croutons|breadcrumbs)\b/gi, code: 'A' },
+      { re: /\b(tuna|tuna sauce|anchovies|cod|salmon)\b/gi, code: 'D' },
+      { re: /\b(shrimp|prawns|scampi|crab)\b/gi, code: 'B' },
+      { re: /\b(mayonnaise|eggs|egg)\b/gi, code: 'C' },
+      { re: /\b(pistachio|hazelnuts|almonds|walnuts)\b/gi, code: 'H' },
+      { re: /\b(mustard|honey mustard)\b/gi, code: 'J' },
+      { re: /\b(prosecco|balsamic glaze|balsamic vinegar)\b/gi, code: 'L' },
+      { re: /\b(bbq sauce)\b/gi, code: 'F' },
+      { re: /\b(pickled vegetables)\b/gi, code: 'I' },
+    ];
 
-function annotateDesc(desc) {
-  if (!desc) return desc;
-  let out = desc;
-  const done = new Map();
-  allergenRules.forEach(({ re, code }) => {
-    re.lastIndex = 0;
-    out = out.replace(re, (match) => {
-      const key = match.toLowerCase();
-      if (!done.has(key)) done.set(key, new Set());
-      if (done.get(key).has(code)) return match;
-      done.get(key).add(code);
-      return `${match}<sup class="alg">${code}</sup>`;
+    function annotateDesc(desc) {
+      if (!desc) return desc;
+      let out = desc;
+      const done = new Map();
+      allergenRules.forEach(({ re, code }) => {
+        re.lastIndex = 0;
+        out = out.replace(re, (match) => {
+          const key = match.toLowerCase();
+          if (!done.has(key)) done.set(key, new Set());
+          if (done.get(key).has(code)) return match;
+          done.get(key).add(code);
+          return `${match}<sup class="alg">${code}</sup>`;
+        });
+      });
+      return out;
+    }
+
+    // ── Menu data (bilingual) ────────────────────────────────
+    const menuData = [
+      {
+        id: 'wrap',
+        it: { titolo: 'I Wrap', emoji: '🌯' },
+        en: { titolo: 'Wraps', emoji: '🌯' },
+        sottotitoli: null,
+        items: [
+          {
+            it: { nome: 'Pulled Pork', desc: 'Cipolla, Scamorza affumicata, Salsa BBQ, Peperoncino' },
+            en: { nome: 'Pulled Pork', desc: 'Onion, Smoked Scamorza, BBQ Sauce, Chilli' },
+            prezzo: '€ 10,00'
+          },
+          {
+            it: { nome: 'Burrito', desc: 'Carne Trita, Fagioli Rossi, Mais, Cipolla, Peperoni, Peperoncino, Salsa BBQ' },
+            en: { nome: 'Burrito', desc: 'Minced Beef, Red Beans, Sweetcorn, Onion, Peppers, Chilli, BBQ Sauce' },
+            prezzo: '€ 10,00'
+          },
+          {
+            it: { nome: 'Pollo alla Griglia', desc: 'Pomodoro, Insalata, Erba cipollina, Salsa yogurt' },
+            en: { nome: 'Grilled Chicken', desc: 'Tomato, Lettuce, Chives, Yogurt Sauce' },
+            prezzo: '€ 10,00'
+          },
+        ]
+      },
+      {
+        id: 'hamburger',
+        it: { titolo: 'Hamburger', emoji: '🍔' },
+        en: { titolo: 'Burgers', emoji: '🍔' },
+        items: [],
+        sottotitoli: [
+
+          {
+            it: { label: 'Le Specialità', isNew: false },
+            en: { label: 'Signature Burgers', isNew: false },
+            items: [
+              {
+                it: { nome: 'Lynyrd Skynyrd', desc: 'Hamburger, Bacon, Cipolla caramellata, Caciocavallo, Tocchetti di Melanzane al forno, Radicchio' },
+                en: { nome: 'Lynyrd Skynyrd', desc: 'Burger, Bacon, Caramelised Onion, Caciocavallo, Oven-Baked Aubergine, Radicchio' },
+                prezzo: '€ 10,00'
+              },
+              {
+                it: { nome: 'Creedence', desc: 'Hamburger, Stracciatella, Chips di zucchina, Erba cipollina, Insalata' },
+                en: { nome: 'Creedence', desc: 'Burger, Stracciatella, Zucchini Chips, Chives, Lettuce' },
+                prezzo: '€ 10,00'
+              },
+              {
+                it: { nome: 'Onion Ring', desc: 'Hamburger, Bacon, Cheddar, Insalata, Pomodoro, Anelli di cipolla Fritti, Ketchup' },
+                en: { nome: 'Onion Ring', desc: 'Burger, Bacon, Cheddar, Lettuce, Tomato, Fried Onion Rings, Ketchup' },
+                prezzo: '€ 10,00'
+              },
+              {
+                it: { nome: 'Burratina', desc: 'Hamburger, Mortadella, Burratina, Rucola, Crema di Pistacchio' },
+                en: { nome: 'Burratina', desc: 'Burger, Mortadella, Burratina, Rocket, Pistachio Cream' },
+                prezzo: '€ 10,00'
+              },
+              {
+                it: { nome: 'Pulled Pork', desc: 'Hamburger, Bacon, Cheddar, Pomodoro, Insalata, Pulled Pork, Salsa BBQ' },
+                en: { nome: 'Pulled Pork', desc: 'Burger, Bacon, Cheddar, Tomato, Lettuce, Pulled Pork, BBQ Sauce' },
+                prezzo: '€ 10,00'
+              },
+              {
+                it: { nome: 'Crocchè', desc: 'Hamburger, Bacon, Cheddar, Pomodoro, Insalata, Crocchè gigante con ripieno di Mozzarella, Salsa Ceasar' },
+                en: { nome: 'Crocchè', desc: 'Burger, Bacon, Cheddar, Tomato, Lettuce, Giant Mozzarella Croquette, Caesar Sauce' },
+                prezzo: '€ 10,00'
+              },
+              {
+                it: { nome: 'ZZ Top', desc: 'Hamburger, Pomodori secchi, Taleggio, Speck, Rucola, Maionese, Senape' },
+                en: { nome: 'ZZ Top', desc: 'Burger, Sun-Dried Tomatoes, Taleggio, Speck, Rocket, Mayonnaise, Mustard' },
+                prezzo: '€ 10,00'
+              },
+              {
+                it: { nome: 'AC/DC', desc: 'Hamburger, Bacon, Pomodoro, Cipolla, Nduja, Insalata, Caciocavallo' },
+                en: { nome: 'AC/DC', desc: 'Burger, Bacon, Tomato, Onion, Nduja, Lettuce, Caciocavallo' },
+                prezzo: '€ 10,00'
+              },
+            ]
+          },
+          {
+            it: { label: 'I Classici', isNew: false },
+            en: { label: 'The Classics', isNew: false },
+            items: [
+              { it: { nome: 'Numero 1', desc: 'Hamburger, Cheddar, Pomodoro, Insalata' }, en: { nome: 'Number 1', desc: 'Burger, Cheddar, Tomato, Lettuce' }, prezzo: '€ 6,00' },
+              { it: { nome: 'Numero 2', desc: 'Hamburger, Bacon, Maionese, Insalata, Pomodoro' }, en: { nome: 'Number 2', desc: 'Burger, Bacon, Mayonnaise, Lettuce, Tomato' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 3', desc: 'Hamburger, Bacon, Cheddar, Cipolla, Cetriolo, Insalata, Salsa BBQ' }, en: { nome: 'Number 3', desc: 'Burger, Bacon, Cheddar, Onion, Gherkin, Lettuce, BBQ Sauce' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 4', desc: 'Hamburger, Bacon, Patatine fritte, Ketchup, Maionese' }, en: { nome: 'Number 4', desc: 'Burger, Bacon, French Fries, Ketchup, Mayonnaise' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 5', desc: 'Doppio Hamburger, Bacon, Cheddar, Cetriolo, Insalata Capricciosa' }, en: { nome: 'Number 5', desc: 'Double Burger, Bacon, Cheddar, Gherkin, Mixed Salad' }, prezzo: '€ 10,00' },
+              { it: { nome: 'Numero 6', desc: 'Hamburger, Bacon, Cheddar, Insalata, Ketchup, Senape' }, en: { nome: 'Number 6', desc: 'Burger, Bacon, Cheddar, Lettuce, Ketchup, Mustard' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 7', desc: 'Hamburger, Bacon, Salame piccante, Provolone, Insalata, Peperoncino, Salsa BBQ' }, en: { nome: 'Number 7', desc: 'Burger, Bacon, Spicy Salami, Provolone, Lettuce, Chilli, BBQ Sauce' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 8', desc: 'Hamburger, Bacon, Cheddar, Cetriolo, Salsa Burger' }, en: { nome: ' Number 8', desc: 'Burger, Bacon, Cheddar, Gherkin, Burger Sauce' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 9', desc: 'Porchetta, Bacon, Scamorza Affumicata, Insalata, Salsa Honey Mustard' }, en: { nome: 'Number 9', desc: 'Porchetta, Bacon, Smoked Scamorza, Lettuce, Honey Mustard Sauce' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 10', desc: 'Porchetta, Bacon, Provola Dolce, Cipolla, Rucola, Pomodoro' }, en: { nome: 'Number 10', desc: 'Porchetta, Bacon, Sweet Provola, Onion, Rocket, Tomato' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 11', desc: 'Cotoletta, Pomodoro, Insalata, Maionese' }, en: { nome: 'Number 11', desc: 'Breaded Chicken Cutlet, Tomato, Lettuce, Mayonnaise' }, prezzo: '€ 7,00' },
+              { it: { nome: 'Numero 12', desc: 'Cotoletta, Bacon, Cheddar, Insalata, Salsa Honey Mustard' }, en: { nome: ' Number 12', desc: 'Breaded Cutlet, Bacon, Cheddar, Lettuce, Honey Mustard Sauce' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Numero 13', desc: 'Wustel, Ketchup, Maionese' }, en: { nome: 'Number 13', desc: 'Hot Dog, Ketchup, Mayonnaise' }, prezzo: '€ 6,00' },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'piatti',
+        it: { titolo: 'I Piatti', emoji: '🍽️' },
+        en: { titolo: 'Main Dishes', emoji: '🍽️' },
+        sottotitoli: null,
+        items: [
+          {
+            it: { nome: 'Hamburger Completo', desc: 'Hamburger di manzo gr150, Cheddar, Bacon, Insalata, Patatine fritte' },
+            en: { nome: 'Full Burger Plate', desc: '150g Beef Burger, Cheddar, Bacon, Lettuce, French Fries' },
+            prezzo: '€ 10,00'
+          },
+          {
+            it: { nome: 'Kebab in Piada', desc: 'Kebab, Cipolla, Scamorza affumicata, Insalata, Salsa Ceasar in Piada con Patatine fritte' },
+            en: { nome: 'Kebab Flatbread', desc: 'Kebab, Onion, Smoked Scamorza, Lettuce, Caesar Sauce in Flatbread with French Fries' },
+            prezzo: '€ 10,00'
+          },
+          {
+            it: { nome: 'Caprese', desc: 'Pomodoro e Mozzarella su letto di Rucola' },
+            en: { nome: 'Caprese', desc: 'Tomato and Mozzarella on a bed of Rocket' },
+            prezzo: '€ 8,00'
+          },
+          {
+            it: { nome: 'Tagliata di Pollo', desc: 'Pomodorini, Rucola, Grana con Glassa di Aceto Balsamico' },
+            en: { nome: 'Sliced Chicken Breast', desc: 'Cherry Tomatoes, Rocket, Grana with Balsamic Glaze' },
+            prezzo: '€ 10,00'
+          },
+        ]
+      },
+      {
+        id: 'insalate',
+        it: { titolo: 'Le Insalate', emoji: '🥗' },
+        en: { titolo: 'Salads', emoji: '🥗' },
+        sottotitoli: null,
+        items: [
+          {
+            it: { nome: 'Insalata 1', desc: 'Lattuga, Rucola, Pomodoro, Mozzarella, Mais, Olive nere, Tonno' },
+            en: { nome: 'Salad 1', desc: 'Lettuce, Rocket, Tomato, Mozzarella, Sweetcorn, Black Olives, Tuna' },
+            prezzo: '€ 7,00'
+          },
+          {
+            it: { nome: 'Insalata 2', desc: 'Lattuga, Rucola, Pomodoro, Funghi, Grana, Bresaola o Crudo' },
+            en: { nome: 'Salad 2', desc: 'Lettuce, Rocket, Tomato, Mushrooms, Grana, Bresaola or Prosciutto' },
+            prezzo: '€ 7,00'
+          },
+          {
+            it: { nome: 'Insalata 3', desc: 'Lattuga, Rucola, Mais, Pomodoro, Pollo alla Griglia, Salsa allo Yogurt' },
+            en: { nome: 'Salad 3', desc: 'Lettuce, Rocket, Sweetcorn, Tomato, Grilled Chicken, Yogurt Sauce' },
+            prezzo: '€ 10,00'
+          },
+        ]
+      },
+      {
+        id: 'taglieri',
+        it: { titolo: 'I Taglieri', emoji: '🧀' },
+        en: { titolo: 'Charcuterie Boards', emoji: '🧀' },
+        sottotitoli: null,
+        items: [
+          {
+            it: { nome: 'Tagliere Bresaola', desc: 'Bresaola, Rucola, Grana, Olio, Limone, Pepe Nero' },
+            en: { nome: 'Bresaola Board', desc: 'Bresaola, Rocket, Grana, Olive Oil, Lemon, Black Pepper' },
+            prezzo: '€ 10,00'
+          },
+          {
+            it: { nome: 'Tagliere Salumi Misti', desc: 'Selezione di salumi misti' },
+            en: { nome: 'Mixed Cured Meats Board', desc: 'Selection of mixed cured meats' },
+            prezzo: '€ 15,00'
+          },
+          {
+            it: { nome: 'Tagliere Misto', desc: 'Salumi e Formaggi misti' },
+            en: { nome: 'Mixed Board', desc: 'Cured Meats and Cheeses' },
+            prezzo: '€ 15,00'
+          },
+        ]
+      },
+      {
+        id: 'saltimbocca',
+        it: { titolo: 'Saltimbocca / Pucce', emoji: '🥙' },
+        en: { titolo: 'Saltimbocca / Puccia', emoji: '🥙' },
+        sottotitoli: null,
+        items: [
+          { it: { nome: 'Numero 15', desc: 'Crudo, Mozzarella' }, en: { nome: 'Number 15 ', desc: 'Prosciutto Crudo, Mozzarella' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 16 ', desc: 'Crudo, Galbanone, Salsa Tonnata' }, en: { nome: 'Number 16', desc: 'Prosciutto Crudo, Galbanone, Tuna Sauce' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 17 ', desc: 'Crudo, Scamorza Affumicata, Insalata Capricciosa' }, en: { nome: 'Number 17', desc: 'Prosciutto Crudo, Smoked Scamorza, Mixed Salad' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 18 ', desc: 'Crudo, Mozzarella, Salsa ai Funghi Porcini' }, en: { nome: 'Number 18', desc: 'Prosciutto Crudo, Mozzarella, Porcini Mushroom Sauce' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 19', desc: 'Crudo, Mozzarella, Funghi, Tonno, Peperoncino' }, en: { nome: 'Number 19', desc: 'Prosciutto Crudo, Mozzarella, Mushrooms, Tuna, Chilli' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 20', desc: 'Cotto di Praga, Galbanino, Funghi, Insalata, Mais, Salsa Yogurt' }, en: { nome: 'Number 20', desc: 'Prague Ham, Galbanino, Mushrooms, Lettuce, Sweetcorn, Yogurt Sauce' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 21', desc: 'Cotto di Praga, Salame Piccante, Scamorza Affumicata, Funghi, Tonno, Insalata, Peperoncino' }, en: { nome: 'Number 21', desc: 'Prague Ham, Spicy Salami, Smoked Scamorza, Mushrooms, Tuna, Lettuce, Chilli' }, prezzo: '€ 7,00' },
+          { it: { nome: 'Numero 22 ', desc: 'Speck, Galbanino, Pomodoro, Rucola' }, en: { nome: 'Number 22', desc: 'Speck, Galbanino, Tomato, Rocket' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 23', desc: 'Speck, Scamorza Affumicata, Funghi, Salsa Rosa' }, en: { nome: 'Number 23', desc: 'Speck, Smoked Scamorza, Mushrooms, Rose Sauce' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 24', desc: 'Pancetta, Provolone Piccante, Tonno, Giardiniera' }, en: { nome: 'Number 24', desc: 'Pancetta, Spicy Provolone, Tuna, Pickled Vegetables' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 25', desc: 'Pancetta, Wustel a fettine, Galbanino, Peperoncino' }, en: { nome: 'Number 25', desc: 'Pancetta, Sliced Hot Dog, Galbanino, Chilli' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 26', desc: 'Salame Dolce, Emmental, Funghi, Tonno' }, en: { nome: 'Number 26', desc: 'Sweet Salami, Emmental, Mushrooms, Tuna' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Numero 27 ', desc: 'Bresaola, Rucola, Grana, Olio, Limone, Pepe' }, en: { nome: 'Number 27', desc: 'Bresaola, Rocket, Grana, Olive Oil, Lemon, Pepper' }, prezzo: '€ 7,00' },
+          { it: { nome: 'Numero 28 ', desc: 'Mortadella, Provolone Piccante, Tonno, Giardiniera' }, en: { nome: 'Number 28', desc: 'Mortadella, Spicy Provolone, Tuna, Pickled Vegetables' }, prezzo: '€ 6,00' },
+        ]
+      },
+      {
+        id: 'piadina',
+        it: { titolo: 'Piadina', emoji: '🫓' },
+        en: { titolo: 'Flatbreads', emoji: '🫓' },
+        sottotitoli: null,
+        items: [
+          { it: { nome: 'Piadina 1', desc: 'Salame Dolce, Emmental, Pomodoro, Peperoncino' }, en: { nome: 'Flatbread 1', desc: 'Sweet Salami, Emmental, Tomato, Chilli' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 2', desc: 'Crudo, Mozzarella' }, en: { nome: 'Flatbread 2', desc: 'Prosciutto Crudo, Mozzarella' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 3', desc: 'Cotto di Praga, Emmental, Salsa Tonnata' }, en: { nome: 'Flatbread 3', desc: 'Prague Ham, Emmental, Tuna Sauce' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 4', desc: 'Salame Piccante, Pancetta, Peperoncino, Provolone Piccante' }, en: { nome: 'Flatbread 4', desc: 'Spicy Salami, Pancetta, Chilli, Spicy Provolone' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 5', desc: 'Cotto di Praga, Philadelphia, Rucola' }, en: { nome: 'Flatbread 5', desc: 'Prague Ham, Philadelphia, Rocket' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 6', desc: 'Crudo, Mozzarella, Pomodoro, Rucola, Grana' }, en: { nome: 'Flatbread 6', desc: 'Prosciutto Crudo, Mozzarella, Tomato, Rocket, Grana' }, prezzo: '€ 7,00' },
+          { it: { nome: 'Piadina 7', desc: 'Tonno, Mozzarella, Pomodoro, Olive' }, en: { nome: 'Flatbread 7', desc: 'Tuna, Mozzarella, Tomato, Olives' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 8', desc: 'Cotto di Praga, Insalata Capricciosa, Funghi, Mais' }, en: { nome: 'Flatbread 8', desc: 'Prague Ham, Mixed Salad, Mushrooms, Sweetcorn' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 9', desc: 'Cotto di Praga, Gamberetti in Salsa Cocktail, Rucola' }, en: { nome: 'Flatbread 9', desc: 'Prague Ham, Shrimp in Cocktail Sauce, Rocket' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Piadina 10', desc: 'Cotto di Praga, Tonno, Gamberetti, Pomodoro, Rucola' }, en: { nome: 'Flatbread 10', desc: 'Prague Ham, Tuna, Shrimp, Tomato, Rocket' }, prezzo: '€ 6,00' },
+        ]
+      },
+      {
+        id: 'baguette',
+        it: { titolo: 'Baguette', emoji: '🥖' },
+        en: { titolo: 'Baguettes', emoji: '🥖' },
+        items: [],
+        sottotitoli: [
+          {
+            it: { label: 'Pane caldo cotto al momento', isNew: false },
+            en: { label: 'Freshly baked warm bread', isNew: false },
+            items: [
+              { it: { nome: 'Baguette 1', desc: 'Bresaola, Funghi, Tonno, Rucola, Salsa ai funghi porcini' }, en: { nome: 'Baguette 1', desc: 'Bresaola, Mushrooms, Tuna, Rocket, Porcini Mushroom Sauce' }, prezzo: '€ 10,00' },
+              { it: { nome: 'Baguette 2', desc: 'Mortadella, Provolone, Giardiniera' }, en: { nome: 'Baguette 2', desc: 'Mortadella, Provolone, Pickled Vegetables' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Baguette 3', desc: 'Cotto di Praga, Galbanino, Pomodoro, Rucola' }, en: { nome: 'Baguette 3', desc: 'Prague Ham, Galbanino, Tomato, Rocket' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Baguette 4', desc: 'Capocollo, Scamorza Affumicata, Funghi, Insalata' }, en: { nome: 'Baguette 4', desc: 'Capocollo, Smoked Scamorza, Mushrooms, Lettuce' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Baguette 5', desc: 'Salame Piccante, Emmental, Tonno, Pomodoro, Peperoncino' }, en: { nome: 'Baguette 5', desc: 'Spicy Salami, Emmental, Tuna, Tomato, Chilli' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Baguette 6', desc: 'Mortadella, Burrata, Crema di Pistacchio' }, en: { nome: 'Baguette 6', desc: 'Mortadella, Burrata, Pistachio Cream' }, prezzo: '€ 10,00' },
+              { it: { nome: 'Baguette 7', desc: 'Capocollo, Galbanone, Tonno, Peperoni' }, en: { nome: 'Baguette 7', desc: 'Capocollo, Galbanone, Tuna, Peppers' }, prezzo: '€ 8,00' },
+              { it: { nome: 'Baguette 8', desc: 'Crudo, Stracciatella, Chips di zucchina, Radicchio' }, en: { nome: 'Baguette 8', desc: 'Prosciutto Crudo, Stracciatella, Zucchini Chips, Radicchio' }, prezzo: '€ 10,00' },
+              { it: { nome: 'Baguette 9 ', desc: 'Speck, Scamorza Affumicata, Tocchetti di Melanzane al forno, Salsa Rosa, Insalata' }, en: { nome: 'Baguette 9', desc: 'Speck, Smoked Scamorza, Oven-Baked Aubergine, Rose Sauce, Lettuce' }, prezzo: '€ 10,00' },
+
+            ]
+          },
+          
+        ]
+      },
+      {
+        id: 'pizze',
+        it: { titolo: 'Pizze', emoji: '🍕' },
+        en: { titolo: 'Pizzas', emoji: '🍕' },
+        sottotitoli: null,
+        items: [
+          { it: { nome: 'Margherita', desc: 'Pomodoro, Mozzarella' }, en: { nome: 'Margherita', desc: 'Tomato, Mozzarella' }, prezzo: '€ 5,00' },
+          { it: { nome: 'Diavola', desc: 'Pomodoro, Mozzarella, Salame Piccante' }, en: { nome: 'Diavola', desc: 'Tomato, Mozzarella, Spicy Salami' }, prezzo: '€ 7,00' },
+          { it: { nome: 'Capricciosa', desc: 'Pomodoro, Mozzarella, Cotto, Wustel, Funghi, Olive, Salame Piccante' }, en: { nome: 'Capricciosa', desc: 'Tomato, Mozzarella, Ham, Hot Dog, Mushrooms, Olives, Spicy Salami' }, prezzo: '€ 8,00' },
+          { it: { nome: 'Quattro Formaggi', desc: 'Pomodoro, Mozzarella, Provola, Emmental, Gorgonzola' }, en: { nome: 'Four Cheeses', desc: 'Tomato, Mozzarella, Provola, Emmental, Gorgonzola' }, prezzo: '€ 8,00' },
+          { it: { nome: 'Fumè', desc: 'Pomodoro, Mozzarella, Bacon, Salame Piccante' }, en: { nome: 'Fumè', desc: 'Tomato, Mozzarella, Bacon, Spicy Salami' }, prezzo: '€ 7,00' },
+          { it: { nome: 'Mediterranea', desc: 'Pomodoro, Mozzarella, Crudo, Rucola, Grana' }, en: { nome: 'Mediterranean', desc: 'Tomato, Mozzarella, Prosciutto Crudo, Rocket, Grana' }, prezzo: '€ 8,00' },
+          { it: { nome: 'Chips', desc: 'Pomodoro, Mozzarella, Patatine Fritte' }, en: { nome: 'Chips', desc: 'Tomato, Mozzarella, French Fries' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Americana', desc: 'Pomodoro, Mozzarella, Wustel, Patatine Fritte' }, en: { nome: 'Americana', desc: 'Tomato, Mozzarella, Hot Dog, French Fries' }, prezzo: '€ 7,00' },
+          { it: { nome: 'Tonno e Cipolla', desc: 'Pomodoro, Mozzarella, Tonno, Cipolla' }, en: { nome: 'Tuna & Onion', desc: 'Tomato, Mozzarella, Tuna, Onion' }, prezzo: '€ 8,00' },
+          { it: { nome: 'Bianca', desc: 'Mozzarella, Scamorza affumicata, Salame Piccante, Wustel, Mais, Olive' }, en: { nome: 'White Pizza', desc: 'Mozzarella, Smoked Scamorza, Spicy Salami, Hot Dog, Sweetcorn, Olives' }, prezzo: '€ 8,00' },
+          { it: { nome: 'Pamy', desc: 'Mozzarella, Emmental, Provola, Bacon, Funghi' }, en: { nome: 'Pamy', desc: 'Mozzarella, Emmental, Provola, Bacon, Mushrooms' }, prezzo: '€ 8,00' },
+          { it: { nome: 'Crudaiola', desc: 'Base Piadina: Pomodorini, Mozzarella, Crudo, Rucola, Grana' }, en: { nome: 'Crudaiola', desc: 'Flatbread base: Cherry Tomatoes, Mozzarella, Prosciutto Crudo, Rocket, Grana' }, prezzo: '€ 9,00' },
+          { it: { nome: 'Saporita', desc: 'Pomodoro, Mozzarella, Salame Piccante, Gorgonzola, Olive' }, en: { nome: 'Saporita', desc: 'Tomato, Mozzarella, Spicy Salami, Gorgonzola, Olives' }, prezzo: '€ 8,00' },
+          { it: { nome: 'Boscaiola', desc: 'Pomodoro, Mozzarella, Cotto, Funghi' }, en: { nome: 'Boscaiola', desc: 'Tomato, Mozzarella, Ham, Mushrooms' }, prezzo: '€ 7,00' },
+          { it: { nome: 'Prelibata', desc: 'Mozzarella, Funghi, Capocollo, Burrata, Rucola' }, en: { nome: 'Prelibata', desc: 'Mozzarella, Mushrooms, Capocollo, Burrata, Rocket' }, prezzo: '€ 10,00' },
+          { it: { nome: 'Mortadella', desc: 'Mozzarella, Mortadella, Burrata, Crema di Pistacchio' }, en: { nome: 'Mortadella', desc: 'Mozzarella, Mortadella, Burrata, Pistachio Cream' }, prezzo: '€ 10,00' },
+          { it: { nome: 'Pulled', desc: 'Pomodoro, Mozzarella, Pulled Pork' }, en: { nome: 'Pulled', desc: 'Tomato, Mozzarella, Pulled Pork' }, prezzo: '€ 10,00' },
+          { it: { nome: 'Wine Temptation', desc: 'Pomodoro, Mozzarella, Funghi, Salame Piccante, Cotto, Pomodorini, Olive Nere, Peperoncino, Aglio' }, en: { nome: 'Wine Temptation', desc: 'Tomato, Mozzarella, Mushrooms, Spicy Salami, Ham, Cherry Tomatoes, Black Olives, Chilli, Garlic' }, prezzo: '€ 10,00' },
+          { it: { nome: 'Ortolana', desc: 'Pomodoro, Mozzarella, Zucchine, Melanzane, Peperoni, Funghi' }, en: { nome: 'Ortolana', desc: 'Tomato, Mozzarella, Courgettes, Aubergine, Peppers, Mushrooms' }, prezzo: '€ 7,00' },
+        ]
+      },
+      {
+        id: 'friggitoria',
+        it: { titolo: 'Friggitoria', emoji: '🍟' },
+        en: { titolo: 'Fried Sides', emoji: '🍟' },
+        sottotitoli: null,
+        items: [
+          { it: { nome: 'Patatine Fritte', desc: '' }, en: { nome: 'French Fries', desc: '' }, prezzo: '€ 3,00' },
+          { it: { nome: 'Patate con Buccia Fritte', desc: '' }, en: { nome: 'Skin-On Fries', desc: '' }, prezzo: '€ 4,00' },
+          { it: { nome: 'Twister alla Paprika', desc: '' }, en: { nome: 'Paprika Twister Fries', desc: '' }, prezzo: '€ 4,00' },
+          { it: { nome: 'Patatine Pops', desc: '' }, en: { nome: 'Potato Pops', desc: '' }, prezzo: '€ 4,00' },
+          { it: { nome: 'Crocchette di Patate', desc: '' }, en: { nome: 'Potato Croquettes', desc: '' }, prezzo: '€ 3,00' },
+          { it: { nome: 'Pepite di Pollo', desc: '' }, en: { nome: 'Chicken Nuggets', desc: '' }, prezzo: '€ 3,00' },
+          { it: { nome: 'Pepite di Pollo Speziate', desc: '' }, en: { nome: 'Spicy Chicken Nuggets', desc: '' }, prezzo: '€ 5,00' },
+          { it: { nome: 'Polpette Artigianali 15pz', desc: '' }, en: { nome: 'Homemade Meatballs 15pcs', desc: '' }, prezzo: '€ 5,00' },
+          { it: { nome: 'Panzerottini Dolci/Piccanti', desc: '' }, en: { nome: 'Mini Panzerotti Sweet/Spicy', desc: '' }, prezzo: '€ 4,00' },
+          { it: { nome: 'Straccetti di Pollo', desc: '' }, en: { nome: 'Chicken Strips', desc: '' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Crocchette Artigianali', desc: '' }, en: { nome: 'Homemade Croquettes', desc: '' }, prezzo: '€ 5,00' },
+          { it: { nome: 'Polpette di Melanzane', desc: '' }, en: { nome: 'Aubergine Balls', desc: '' }, prezzo: '€ 5,00' },
+          { it: { nome: 'Anelli di Cipolla', desc: '' }, en: { nome: 'Onion Rings', desc: '' }, prezzo: '€ 5,00' },
+          { it: { nome: 'Polpette di Pulled Pork', desc: '' }, en: { nome: 'Pulled Pork Balls', desc: '' }, prezzo: '€ 6,00' },
+          { it: { nome: 'Jalapeno', desc: '' }, en: { nome: 'Jalapeños', desc: '' }, prezzo: '€ 5,00' },
+          { it: { nome: 'Fritto Misto', desc: 'Selezione della friggitoria' }, en: { nome: 'Mixed Fry', desc: 'Selection of fried sides' }, prezzo: '€ 15,00' },
+        ]
+      },
+      {
+        id: 'bevande',
+        it: { titolo: 'Bevande', emoji: '🍷' },
+        en: { titolo: 'Drinks', emoji: '🍷' },
+        items: [],
+        sottotitoli: [
+          {
+            it: { label: 'Analcolici', isNew: false },
+            en: { label: 'Soft Drinks', isNew: false },
+            items: [
+              { it: { nome: 'Coca Cola', desc: '' }, en: { nome: 'Coca Cola', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Coca Cola Zero', desc: '' }, en: { nome: 'Coca Cola Zero', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Fanta', desc: '' }, en: { nome: 'Fanta', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Lemon Soda', desc: '' }, en: { nome: 'Lemon Soda', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Schweppes', desc: '' }, en: { nome: 'Schweppes', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Schweppes Limone', desc: '' }, en: { nome: 'Schweppes Lemon', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Thè Limone / Pesca', desc: '' }, en: { nome: 'Lemon / Peach Iced Tea', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Succhi di Frutta', desc: '' }, en: { nome: 'Fruit Juices', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Cedrata', desc: '' }, en: { nome: 'Cedrata (Citron Soda)', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Cocktail San Pellegrino', desc: '' }, en: { nome: 'San Pellegrino Cocktail', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Crodino', desc: '' }, en: { nome: 'Crodino', desc: '' }, prezzo: '€ 2,50' },
+            ]
+          },
+          {
+            it: { label: 'Birre', isNew: false },
+            en: { label: 'Beers', isNew: false },
+            items: [
+              { it: { nome: "Beck's", desc: '' }, en: { nome: "Beck's", desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Peroni', desc: '' }, en: { nome: 'Peroni', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Corona', desc: '' }, en: { nome: 'Corona', desc: '' }, prezzo: '€ 4,00' },
+              { it: { nome: "Tennet's", desc: '' }, en: { nome: "Tennet's", desc: '' }, prezzo: '€ 4,00' },
+              { it: { nome: 'Bjorne Beer', desc: '' }, en: { nome: 'Bjorne Beer', desc: '' }, prezzo: '€ 4,00' },
+              { it: { nome: 'Leffe Rossa', desc: '' }, en: { nome: 'Leffe Red', desc: '' }, prezzo: '€ 4,00' },
+              { it: { nome: 'Franziskaner Waiss', desc: '' }, en: { nome: 'Franziskaner Weiss', desc: '' }, prezzo: '€ 4,50' },
+              { it: { nome: 'Spina Piccola', desc: '' }, en: { nome: 'Small Draft', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Spina Media', desc: '' }, en: { nome: ' Medium Draft', desc: '' }, prezzo: '€ 4,00' },
+            ]
+          },
+          {
+            it: { label: 'Drink Alcolici', isNew: false },
+            en: { label: 'Alcoholic Drinks', isNew: false },
+            items: [
+              { it: { nome: 'Campari Soda', desc: '' }, en: { nome: 'Campari Soda', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Martini Bianco / Rosso', desc: '' }, en: { nome: 'Martini White / Red', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Campari Bitter', desc: '' }, en: { nome: 'Campari Bitter', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Prosecco', desc: '' }, en: { nome: 'Prosecco', desc: '' }, prezzo: '€ 3,00' },
+            ]
+          },
+          {
+            it: { label: 'Amari', isNew: false },
+            en: { label: 'Digestifs', isNew: false },
+            items: [
+              { it: { nome: 'Di Saronno', desc: '' }, en: { nome: 'Di Saronno', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Lucano', desc: '' }, en: { nome: 'Lucano', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Jagermeister', desc: '' }, en: { nome: 'Jägermeister', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Amaro del Capo', desc: '' }, en: { nome: 'Amaro del Capo', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Montenegro', desc: '' }, en: { nome: 'Montenegro', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Brancamenta', desc: '' }, en: { nome: 'Brancamenta', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Unicum', desc: '' }, en: { nome: 'Unicum', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Sambuca', desc: '' }, en: { nome: 'Sambuca', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Fernet Branca', desc: '' }, en: { nome: 'Fernet Branca', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Jefferson', desc: '' }, en: { nome: 'Jefferson', desc: '' }, prezzo: '€ 4,00' },
+            ]
+          },
+          {
+            it: { label: 'Distillati', isNew: false },
+            en: { label: 'Spirits', isNew: false },
+            items: [
+              { it: { nome: 'Vodka', desc: '' }, en: { nome: 'Vodka', desc: '' }, prezzo: '€ 2,50' },
+              { it: { nome: 'Grappa', desc: '' }, en: { nome: 'Grappa', desc: '' }, prezzo: '€ 3,00' },
+              { it: { nome: 'Grappa Barricata', desc: '' }, en: { nome: 'Aged Grappa', desc: '' }, prezzo: '€ 3,00' },
+              { it: { nome: 'Whisky', desc: '' }, en: { nome: 'Whisky', desc: '' }, prezzo: '€ 3,00' },
+              { it: { nome: 'Whisky Speciali', desc: '' }, en: { nome: 'Special Whiskies', desc: '' }, prezzo: '€ 5,00' },
+              { it: { nome: 'Rum', desc: '' }, en: { nome: 'Rum', desc: '' }, prezzo: '€ 3,00' },
+              { it: { nome: 'Rum Speciali', desc: '' }, en: { nome: 'Special Rums', desc: '' }, prezzo: '€ 5,00' },
+              { it: { nome: 'Cognac', desc: '' }, en: { nome: 'Cognac', desc: '' }, prezzo: '€ 4,00' },
+              { it: { nome: 'Tequila', desc: '' }, en: { nome: 'Tequila', desc: '' }, prezzo: '€ 3,00' },
+              { it: { nome: 'Cocktail vari', desc: '' }, en: { nome: 'Various Cocktails', desc: '' }, prezzo: '€ 5,00' },
+            ]
+          },
+        ]
+      }
+    ];
+
+    // ── Build nav ────────────────────────────────────────────
+    const desktopLinks = document.getElementById('desktop-links');
+    const mobileLinksEl = document.getElementById('mobile-links');
+    const navCategories = [...menuData, { id: 'allergeni', it: { titolo: 'Allergeni' }, en: { titolo: 'Allergens' } }];
+
+    navCategories.forEach(cat => {
+      [desktopLinks, mobileLinksEl].forEach((container, i) => {
+        const a = document.createElement('a');
+        a.href = `#${cat.id}`;
+        a.className = 'nav-link';
+        a.dataset.catId = cat.id;
+        a.dataset.itLabel = cat.it.titolo;
+        a.dataset.enLabel = cat.en.titolo;
+        a.textContent = cat.it.titolo;
+        if (i === 1) {
+          a.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            toggle.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        }
+        container.appendChild(a);
+      });
     });
-  });
-  return out;
-}
 
-// ── Menu data (bilingual) ────────────────────────────────
-const menuData = [
-  {
-    id: 'wrap',
-    it: { titolo: 'I Wrap', emoji: '🌯' },
-    en: { titolo: 'Wraps', emoji: '🌯' },
-    sottotitoli: null,
-    items: [
-      {
-        it: { nome: 'Pulled Pork', desc: 'Cipolla, Scamorza affumicata, Salsa BBQ, Peperoncino' },
-        en: { nome: 'Pulled Pork', desc: 'Onion, Smoked Scamorza, BBQ Sauce, Chilli' },
-        prezzo: '€ 10,00'
-      },
-      {
-        it: { nome: 'Burrito', desc: 'Carne Trita, Fagioli Rossi, Mais, Cipolla, Peperoni, Peperoncino, Salsa BBQ' },
-        en: { nome: 'Burrito', desc: 'Minced Beef, Red Beans, Sweetcorn, Onion, Peppers, Chilli, BBQ Sauce' },
-        prezzo: '€ 10,00'
-      },
-      {
-        it: { nome: 'Pollo alla Griglia', desc: 'Pomodoro, Insalata, Erba cipollina, Salsa yogurt' },
-        en: { nome: 'Grilled Chicken', desc: 'Tomato, Lettuce, Chives, Yogurt Sauce' },
-        prezzo: '€ 10,00'
-      },
-    ]
-  },
-  {
-    id: 'hamburger',
-    it: { titolo: 'Hamburger', emoji: '🍔' },
-    en: { titolo: 'Burgers', emoji: '🍔' },
-    items: [],
-    sottotitoli: [
-      {
-        it: { label: 'Le Specialità — Novità', isNew: true },
-        en: { label: 'Specials — New', isNew: true },
-        items: [
-          {
-            it: { nome: 'Lynyrd Skynyrd', desc: 'Hamburger, Bacon, Cipolla caramellata, Caciocavallo, Tocchetti di Melanzane al forno, Radicchio' },
-            en: { nome: 'Lynyrd Skynyrd', desc: 'Burger, Bacon, Caramelised Onion, Caciocavallo, Oven-Baked Aubergine, Radicchio' },
-            prezzo: '€ 10,00'
-          },
-          {
-            it: { nome: 'Creedence', desc: 'Hamburger, Stracciatella, Chips di zucchina, Erba cipollina, Insalata' },
-            en: { nome: 'Creedence', desc: 'Burger, Stracciatella, Zucchini Chips, Chives, Lettuce' },
-            prezzo: '€ 10,00'
-          },
-        ]
-      },
-      {
-        it: { label: 'Le Specialità', isNew: false },
-        en: { label: 'Signature Burgers', isNew: false },
-        items: [
-          {
-            it: { nome: 'Onion Ring', desc: 'Hamburger, Bacon, Cheddar, Insalata, Pomodoro, Anelli di cipolla Fritti, Ketchup' },
-            en: { nome: 'Onion Ring', desc: 'Burger, Bacon, Cheddar, Lettuce, Tomato, Fried Onion Rings, Ketchup' },
-            prezzo: '€ 10,00'
-          },
-          {
-            it: { nome: 'Burratina', desc: 'Hamburger, Mortadella, Burratina, Rucola, Crema di Pistacchio' },
-            en: { nome: 'Burratina', desc: 'Burger, Mortadella, Burratina, Rocket, Pistachio Cream' },
-            prezzo: '€ 10,00'
-          },
-          {
-            it: { nome: 'Pulled Pork', desc: 'Hamburger, Bacon, Cheddar, Pomodoro, Insalata, Pulled Pork, Salsa BBQ' },
-            en: { nome: 'Pulled Pork', desc: 'Burger, Bacon, Cheddar, Tomato, Lettuce, Pulled Pork, BBQ Sauce' },
-            prezzo: '€ 10,00'
-          },
-          {
-            it: { nome: 'Crocchè', desc: 'Hamburger, Bacon, Cheddar, Pomodoro, Insalata, Crocchè gigante con ripieno di Mozzarella, Salsa Ceasar' },
-            en: { nome: 'Crocchè', desc: 'Burger, Bacon, Cheddar, Tomato, Lettuce, Giant Mozzarella Croquette, Caesar Sauce' },
-            prezzo: '€ 10,00'
-          },
-          {
-            it: { nome: 'ZZ Top', desc: 'Hamburger, Pomodori secchi, Taleggio, Speck, Rucola, Maionese, Senape' },
-            en: { nome: 'ZZ Top', desc: 'Burger, Sun-Dried Tomatoes, Taleggio, Speck, Rocket, Mayonnaise, Mustard' },
-            prezzo: '€ 10,00'
-          },
-          {
-            it: { nome: 'AC/DC', desc: 'Hamburger, Bacon, Pomodoro, Cipolla, Nduja, Insalata, Caciocavallo' },
-            en: { nome: 'AC/DC', desc: 'Burger, Bacon, Tomato, Onion, Nduja, Lettuce, Caciocavallo' },
-            prezzo: '€ 10,00'
-          },
-        ]
-      },
-      {
-        it: { label: 'I Classici', isNew: false },
-        en: { label: 'The Classics', isNew: false },
-        items: [
-          { it: { nome: 'Numero 1', desc: 'Hamburger, Cheddar, Pomodoro, Insalata' }, en: { nome: 'Number 1', desc: 'Burger, Cheddar, Tomato, Lettuce' }, prezzo: '€ 6,00' },
-          { it: { nome: 'Numero 2', desc: 'Hamburger, Bacon, Maionese, Insalata, Pomodoro' }, en: { nome: 'Number 2', desc: 'Burger, Bacon, Mayonnaise, Lettuce, Tomato' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 3', desc: 'Hamburger, Bacon, Cheddar, Cipolla, Cetriolo, Insalata, Salsa BBQ' }, en: { nome: 'Number 3', desc: 'Burger, Bacon, Cheddar, Onion, Gherkin, Lettuce, BBQ Sauce' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 4', desc: 'Hamburger, Bacon, Patatine fritte, Ketchup, Maionese' }, en: { nome: 'Number 4', desc: 'Burger, Bacon, French Fries, Ketchup, Mayonnaise' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 5', desc: 'Doppio Hamburger, Bacon, Cheddar, Cetriolo, Insalata Capricciosa' }, en: { nome: 'Number 5', desc: 'Double Burger, Bacon, Cheddar, Gherkin, Mixed Salad' }, prezzo: '€ 10,00' },
-          { it: { nome: 'Numero 6', desc: 'Hamburger, Bacon, Cheddar, Insalata, Ketchup, Senape' }, en: { nome: 'Number 6', desc: 'Burger, Bacon, Cheddar, Lettuce, Ketchup, Mustard' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 7', desc: 'Hamburger, Bacon, Salame piccante, Provolone, Insalata, Peperoncino, Salsa BBQ' }, en: { nome: 'Number 7', desc: 'Burger, Bacon, Spicy Salami, Provolone, Lettuce, Chilli, BBQ Sauce' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero Burger 8', desc: 'Hamburger, Bacon, Cheddar, Cetriolo, Salsa Burger' }, en: { nome: 'Burger Number 8', desc: 'Burger, Bacon, Cheddar, Gherkin, Burger Sauce' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 9', desc: 'Porchetta, Bacon, Scamorza Affumicata, Insalata, Salsa Honey Mustard' }, en: { nome: 'Number 9', desc: 'Porchetta, Bacon, Smoked Scamorza, Lettuce, Honey Mustard Sauce' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 10', desc: 'Porchetta, Bacon, Provola Dolce, Cipolla, Rucola, Pomodoro' }, en: { nome: 'Number 10', desc: 'Porchetta, Bacon, Sweet Provola, Onion, Rocket, Tomato' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 11', desc: 'Cotoletta, Pomodoro, Insalata, Maionese' }, en: { nome: 'Number 11', desc: 'Breaded Chicken Cutlet, Tomato, Lettuce, Mayonnaise' }, prezzo: '€ 7,00' },
-          { it: { nome: 'Numero Bacon 12', desc: 'Cotoletta, Bacon, Cheddar, Insalata, Salsa Honey Mustard' }, en: { nome: 'Bacon Number 12', desc: 'Breaded Cutlet, Bacon, Cheddar, Lettuce, Honey Mustard Sauce' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Numero 13', desc: 'Wustel, Ketchup, Maionese' }, en: { nome: 'Number 13', desc: 'Hot Dog, Ketchup, Mayonnaise' }, prezzo: '€ 6,00' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'piatti',
-    it: { titolo: 'I Piatti', emoji: '🍽️' },
-    en: { titolo: 'Main Dishes', emoji: '🍽️' },
-    sottotitoli: null,
-    items: [
-      {
-        it: { nome: 'Hamburger Completo', desc: 'Hamburger di manzo gr150, Cheddar, Bacon, Insalata, Patatine fritte' },
-        en: { nome: 'Full Burger Plate', desc: '150g Beef Burger, Cheddar, Bacon, Lettuce, French Fries' },
-        prezzo: '€ 10,00'
-      },
-      {
-        it: { nome: 'Kebab in Piada', desc: 'Kebab, Cipolla, Scamorza affumicata, Insalata, Salsa Ceasar in Piada con Patatine fritte' },
-        en: { nome: 'Kebab Flatbread', desc: 'Kebab, Onion, Smoked Scamorza, Lettuce, Caesar Sauce in Flatbread with French Fries' },
-        prezzo: '€ 10,00'
-      },
-      {
-        it: { nome: 'Caprese', desc: 'Pomodoro e Mozzarella su letto di Rucola' },
-        en: { nome: 'Caprese', desc: 'Tomato and Mozzarella on a bed of Rocket' },
-        prezzo: '€ 8,00'
-      },
-      {
-        it: { nome: 'Tagliata di Pollo', desc: 'Pomodorini, Rucola, Grana con Glassa di Aceto Balsamico' },
-        en: { nome: 'Sliced Chicken Breast', desc: 'Cherry Tomatoes, Rocket, Grana with Balsamic Glaze' },
-        prezzo: '€ 10,00'
-      },
-    ]
-  },
-  {
-    id: 'insalate',
-    it: { titolo: 'Le Insalate', emoji: '🥗' },
-    en: { titolo: 'Salads', emoji: '🥗' },
-    sottotitoli: null,
-    items: [
-      {
-        it: { nome: 'Insalata Mare', desc: 'Lattuga, Rucola, Pomodoro, Mozzarella, Mais, Olive nere, Tonno' },
-        en: { nome: 'Sea Salad', desc: 'Lettuce, Rocket, Tomato, Mozzarella, Sweetcorn, Black Olives, Tuna' },
-        prezzo: '€ 7,00'
-      },
-      {
-        it: { nome: 'Insalata Bresaola', desc: 'Lattuga, Rucola, Pomodoro, Funghi, Grana, Bresaola o Crudo' },
-        en: { nome: 'Bresaola Salad', desc: 'Lettuce, Rocket, Tomato, Mushrooms, Grana, Bresaola or Prosciutto' },
-        prezzo: '€ 7,00'
-      },
-      {
-        it: { nome: 'Insalata Pollo', desc: 'Lattuga, Rucola, Mais, Pomodoro, Pollo alla Griglia, Salsa allo Yogurt' },
-        en: { nome: 'Chicken Salad', desc: 'Lettuce, Rocket, Sweetcorn, Tomato, Grilled Chicken, Yogurt Sauce' },
-        prezzo: '€ 10,00'
-      },
-    ]
-  },
-  {
-    id: 'taglieri',
-    it: { titolo: 'I Taglieri', emoji: '🧀' },
-    en: { titolo: 'Charcuterie Boards', emoji: '🧀' },
-    sottotitoli: null,
-    items: [
-      {
-        it: { nome: 'Tagliere Bresaola', desc: 'Bresaola, Rucola, Grana, Olio, Limone, Pepe Nero' },
-        en: { nome: 'Bresaola Board', desc: 'Bresaola, Rocket, Grana, Olive Oil, Lemon, Black Pepper' },
-        prezzo: '€ 10,00'
-      },
-      {
-        it: { nome: 'Tagliere Salumi Misti', desc: 'Selezione di salumi misti' },
-        en: { nome: 'Mixed Cured Meats Board', desc: 'Selection of mixed cured meats' },
-        prezzo: '€ 15,00'
-      },
-      {
-        it: { nome: 'Tagliere Misto', desc: 'Salumi e Formaggi misti' },
-        en: { nome: 'Mixed Board', desc: 'Cured Meats and Cheeses' },
-        prezzo: '€ 15,00'
-      },
-    ]
-  },
-  {
-    id: 'saltimbocca',
-    it: { titolo: 'Saltimbocca / Pucce', emoji: '🥙' },
-    en: { titolo: 'Saltimbocca / Stuffed Rolls', emoji: '🥙' },
-    sottotitoli: null,
-    items: [
-      { it: { nome: 'Crudo e Mozzarella', desc: 'Crudo, Mozzarella' }, en: { nome: 'Prosciutto & Mozzarella', desc: 'Prosciutto Crudo, Mozzarella' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Crudo Galbanone', desc: 'Crudo, Galbanone, Salsa Tonnata' }, en: { nome: 'Prosciutto Galbanone', desc: 'Prosciutto Crudo, Galbanone, Tuna Sauce' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Crudo Scamorza', desc: 'Crudo, Scamorza Affumicata, Insalata Capricciosa' }, en: { nome: 'Prosciutto Scamorza', desc: 'Prosciutto Crudo, Smoked Scamorza, Mixed Salad' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Crudo Funghi Porcini', desc: 'Crudo, Mozzarella, Salsa ai Funghi Porcini' }, en: { nome: 'Prosciutto Porcini', desc: 'Prosciutto Crudo, Mozzarella, Porcini Mushroom Sauce' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Crudo Tonno', desc: 'Crudo, Mozzarella, Funghi, Tonno, Peperoncino' }, en: { nome: 'Prosciutto & Tuna', desc: 'Prosciutto Crudo, Mozzarella, Mushrooms, Tuna, Chilli' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Cotto Yogurt', desc: 'Cotto di Praga, Galbanino, Funghi, Insalata, Mais, Salsa Yogurt' }, en: { nome: 'Prague Ham & Yogurt', desc: 'Prague Ham, Galbanino, Mushrooms, Lettuce, Sweetcorn, Yogurt Sauce' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Cotto Piccante', desc: 'Cotto di Praga, Salame Piccante, Scamorza Affumicata, Funghi, Tonno, Insalata, Peperoncino' }, en: { nome: 'Spicy Prague Ham', desc: 'Prague Ham, Spicy Salami, Smoked Scamorza, Mushrooms, Tuna, Lettuce, Chilli' }, prezzo: '€ 7,00' },
-      { it: { nome: 'Speck Galbanino', desc: 'Speck, Galbanino, Pomodoro, Rucola' }, en: { nome: 'Speck & Galbanino', desc: 'Speck, Galbanino, Tomato, Rocket' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Speck Funghi', desc: 'Speck, Scamorza Affumicata, Funghi, Salsa Rosa' }, en: { nome: 'Speck & Mushrooms', desc: 'Speck, Smoked Scamorza, Mushrooms, Rose Sauce' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Pancetta Tonno', desc: 'Pancetta, Provolone Piccante, Tonno, Giardiniera' }, en: { nome: 'Pancetta & Tuna', desc: 'Pancetta, Spicy Provolone, Tuna, Pickled Vegetables' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Pancetta Wustel', desc: 'Pancetta, Wustel a fettine, Galbanino, Peperoncino' }, en: { nome: 'Pancetta & Hot Dog', desc: 'Pancetta, Sliced Hot Dog, Galbanino, Chilli' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Salame Tonno', desc: 'Salame Dolce, Emmental, Funghi, Tonno' }, en: { nome: 'Salami & Tuna', desc: 'Sweet Salami, Emmental, Mushrooms, Tuna' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Bresaola', desc: 'Bresaola, Rucola, Grana, Olio, Limone, Pepe' }, en: { nome: 'Bresaola', desc: 'Bresaola, Rocket, Grana, Olive Oil, Lemon, Pepper' }, prezzo: '€ 7,00' },
-      { it: { nome: 'Mortadella Giardiniera', desc: 'Mortadella, Provolone Piccante, Tonno, Giardiniera' }, en: { nome: 'Mortadella & Pickles', desc: 'Mortadella, Spicy Provolone, Tuna, Pickled Vegetables' }, prezzo: '€ 6,00' },
-    ]
-  },
-  {
-    id: 'piadina',
-    it: { titolo: 'Piadina', emoji: '🫓' },
-    en: { titolo: 'Flatbreads', emoji: '🫓' },
-    sottotitoli: null,
-    items: [
-      { it: { nome: 'Piadina 1', desc: 'Salame Dolce, Emmental, Pomodoro, Peperoncino' }, en: { nome: 'Flatbread 1', desc: 'Sweet Salami, Emmental, Tomato, Chilli' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 2', desc: 'Crudo, Mozzarella' }, en: { nome: 'Flatbread 2', desc: 'Prosciutto Crudo, Mozzarella' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 3', desc: 'Cotto di Praga, Emmental, Salsa Tonnata' }, en: { nome: 'Flatbread 3', desc: 'Prague Ham, Emmental, Tuna Sauce' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 4', desc: 'Salame Piccante, Pancetta, Peperoncino, Provolone Piccante' }, en: { nome: 'Flatbread 4', desc: 'Spicy Salami, Pancetta, Chilli, Spicy Provolone' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 5', desc: 'Cotto di Praga, Philadelphia, Rucola' }, en: { nome: 'Flatbread 5', desc: 'Prague Ham, Philadelphia, Rocket' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 6', desc: 'Crudo, Mozzarella, Pomodoro, Rucola, Grana' }, en: { nome: 'Flatbread 6', desc: 'Prosciutto Crudo, Mozzarella, Tomato, Rocket, Grana' }, prezzo: '€ 7,00' },
-      { it: { nome: 'Piadina 7', desc: 'Tonno, Mozzarella, Pomodoro, Olive' }, en: { nome: 'Flatbread 7', desc: 'Tuna, Mozzarella, Tomato, Olives' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 8', desc: 'Cotto di Praga, Insalata Capricciosa, Funghi, Mais' }, en: { nome: 'Flatbread 8', desc: 'Prague Ham, Mixed Salad, Mushrooms, Sweetcorn' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 9', desc: 'Cotto di Praga, Gamberetti in Salsa Cocktail, Rucola' }, en: { nome: 'Flatbread 9', desc: 'Prague Ham, Shrimp in Cocktail Sauce, Rocket' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Piadina 10', desc: 'Cotto di Praga, Tonno, Gamberetti, Pomodoro, Rucola' }, en: { nome: 'Flatbread 10', desc: 'Prague Ham, Tuna, Shrimp, Tomato, Rocket' }, prezzo: '€ 6,00' },
-    ]
-  },
-  {
-    id: 'baguette',
-    it: { titolo: 'Baguette', emoji: '🥖' },
-    en: { titolo: 'Baguettes', emoji: '🥖' },
-    items: [],
-    sottotitoli: [
-      {
-        it: { label: 'Pane caldo cotto al momento', isNew: false },
-        en: { label: 'Freshly baked warm bread', isNew: false },
-        items: [
-          { it: { nome: 'Baguette 1', desc: 'Bresaola, Funghi, Tonno, Rucola, Salsa ai funghi porcini' }, en: { nome: 'Baguette 1', desc: 'Bresaola, Mushrooms, Tuna, Rocket, Porcini Mushroom Sauce' }, prezzo: '€ 10,00' },
-          { it: { nome: 'Baguette 2', desc: 'Mortadella, Provolone, Giardiniera' }, en: { nome: 'Baguette 2', desc: 'Mortadella, Provolone, Pickled Vegetables' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Baguette 3', desc: 'Cotto di Praga, Galbanino, Pomodoro, Rucola' }, en: { nome: 'Baguette 3', desc: 'Prague Ham, Galbanino, Tomato, Rocket' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Baguette 4', desc: 'Capocollo, Scamorza Affumicata, Funghi, Insalata' }, en: { nome: 'Baguette 4', desc: 'Capocollo, Smoked Scamorza, Mushrooms, Lettuce' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Baguette 5', desc: 'Salame Piccante, Emmental, Tonno, Pomodoro, Peperoncino' }, en: { nome: 'Baguette 5', desc: 'Spicy Salami, Emmental, Tuna, Tomato, Chilli' }, prezzo: '€ 8,00' },
-          { it: { nome: 'Mortadella e Burrata', desc: 'Mortadella, Burrata, Crema di Pistacchio' }, en: { nome: 'Mortadella & Burrata', desc: 'Mortadella, Burrata, Pistachio Cream' }, prezzo: '€ 10,00' },
-          { it: { nome: 'Baguette 7', desc: 'Capocollo, Galbanone, Tonno, Peperoni' }, en: { nome: 'Baguette 7', desc: 'Capocollo, Galbanone, Tuna, Peppers' }, prezzo: '€ 8,00' },
-        ]
-      },
-      {
-        it: { label: 'Novità', isNew: true },
-        en: { label: 'New Arrivals', isNew: true },
-        items: [
-          { it: { nome: 'Crudo Stracciatella', desc: 'Crudo, Stracciatella, Chips di zucchina, Radicchio' }, en: { nome: 'Prosciutto & Stracciatella', desc: 'Prosciutto Crudo, Stracciatella, Zucchini Chips, Radicchio' }, prezzo: '€ 10,00' },
-          { it: { nome: 'Speck Melanzane', desc: 'Speck, Scamorza Affumicata, Tocchetti di Melanzane al forno, Salsa Rosa, Insalata' }, en: { nome: 'Speck & Aubergine', desc: 'Speck, Smoked Scamorza, Oven-Baked Aubergine, Rose Sauce, Lettuce' }, prezzo: '€ 10,00' },
-        ]
-      },
-    ]
-  },
-  {
-    id: 'pizze',
-    it: { titolo: 'Pizze', emoji: '🍕' },
-    en: { titolo: 'Pizzas', emoji: '🍕' },
-    sottotitoli: null,
-    items: [
-      { it: { nome: 'Margherita', desc: 'Pomodoro, Mozzarella' }, en: { nome: 'Margherita', desc: 'Tomato, Mozzarella' }, prezzo: '€ 5,00' },
-      { it: { nome: 'Diavola', desc: 'Pomodoro, Mozzarella, Salame Piccante' }, en: { nome: 'Diavola', desc: 'Tomato, Mozzarella, Spicy Salami' }, prezzo: '€ 7,00' },
-      { it: { nome: 'Capricciosa', desc: 'Pomodoro, Mozzarella, Cotto, Wustel, Funghi, Olive, Salame Piccante' }, en: { nome: 'Capricciosa', desc: 'Tomato, Mozzarella, Ham, Hot Dog, Mushrooms, Olives, Spicy Salami' }, prezzo: '€ 8,00' },
-      { it: { nome: 'Quattro Formaggi', desc: 'Pomodoro, Mozzarella, Provola, Emmental, Gorgonzola' }, en: { nome: 'Four Cheeses', desc: 'Tomato, Mozzarella, Provola, Emmental, Gorgonzola' }, prezzo: '€ 8,00' },
-      { it: { nome: 'Fumè', desc: 'Pomodoro, Mozzarella, Bacon, Salame Piccante' }, en: { nome: 'Fumè', desc: 'Tomato, Mozzarella, Bacon, Spicy Salami' }, prezzo: '€ 7,00' },
-      { it: { nome: 'Mediterranea', desc: 'Pomodoro, Mozzarella, Crudo, Rucola, Grana' }, en: { nome: 'Mediterranean', desc: 'Tomato, Mozzarella, Prosciutto Crudo, Rocket, Grana' }, prezzo: '€ 8,00' },
-      { it: { nome: 'Chips', desc: 'Pomodoro, Mozzarella, Patatine Fritte' }, en: { nome: 'Chips', desc: 'Tomato, Mozzarella, French Fries' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Americana', desc: 'Pomodoro, Mozzarella, Wustel, Patatine Fritte' }, en: { nome: 'Americana', desc: 'Tomato, Mozzarella, Hot Dog, French Fries' }, prezzo: '€ 7,00' },
-      { it: { nome: 'Tonno e Cipolla', desc: 'Pomodoro, Mozzarella, Tonno, Cipolla' }, en: { nome: 'Tuna & Onion', desc: 'Tomato, Mozzarella, Tuna, Onion' }, prezzo: '€ 8,00' },
-      { it: { nome: 'Bianca', desc: 'Mozzarella, Scamorza affumicata, Salame Piccante, Wustel, Mais, Olive' }, en: { nome: 'White Pizza', desc: 'Mozzarella, Smoked Scamorza, Spicy Salami, Hot Dog, Sweetcorn, Olives' }, prezzo: '€ 8,00' },
-      { it: { nome: 'Pamy', desc: 'Mozzarella, Emmental, Provola, Bacon, Funghi' }, en: { nome: 'Pamy', desc: 'Mozzarella, Emmental, Provola, Bacon, Mushrooms' }, prezzo: '€ 8,00' },
-      { it: { nome: 'Crudaiola', desc: 'Base Piadina: Pomodorini, Mozzarella, Crudo, Rucola, Grana' }, en: { nome: 'Crudaiola', desc: 'Flatbread base: Cherry Tomatoes, Mozzarella, Prosciutto Crudo, Rocket, Grana' }, prezzo: '€ 9,00' },
-      { it: { nome: 'Saporita', desc: 'Pomodoro, Mozzarella, Salame Piccante, Gorgonzola, Olive' }, en: { nome: 'Saporita', desc: 'Tomato, Mozzarella, Spicy Salami, Gorgonzola, Olives' }, prezzo: '€ 8,00' },
-      { it: { nome: 'Boscaiola', desc: 'Pomodoro, Mozzarella, Cotto, Funghi' }, en: { nome: 'Boscaiola', desc: 'Tomato, Mozzarella, Ham, Mushrooms' }, prezzo: '€ 7,00' },
-      { it: { nome: 'Prelibata', desc: 'Mozzarella, Funghi, Capocollo, Burrata, Rucola' }, en: { nome: 'Prelibata', desc: 'Mozzarella, Mushrooms, Capocollo, Burrata, Rocket' }, prezzo: '€ 10,00' },
-      { it: { nome: 'Mortadella', desc: 'Mozzarella, Mortadella, Burrata, Crema di Pistacchio' }, en: { nome: 'Mortadella', desc: 'Mozzarella, Mortadella, Burrata, Pistachio Cream' }, prezzo: '€ 10,00' },
-      { it: { nome: 'Pulled', desc: 'Pomodoro, Mozzarella, Pulled Pork' }, en: { nome: 'Pulled', desc: 'Tomato, Mozzarella, Pulled Pork' }, prezzo: '€ 10,00' },
-      { it: { nome: 'Wine Temptation', desc: 'Pomodoro, Mozzarella, Funghi, Salame Piccante, Cotto, Pomodorini, Olive Nere, Peperoncino, Aglio' }, en: { nome: 'Wine Temptation', desc: 'Tomato, Mozzarella, Mushrooms, Spicy Salami, Ham, Cherry Tomatoes, Black Olives, Chilli, Garlic' }, prezzo: '€ 10,00' },
-      { it: { nome: 'Ortolana', desc: 'Pomodoro, Mozzarella, Zucchine, Melanzane, Peperoni, Funghi' }, en: { nome: 'Ortolana', desc: 'Tomato, Mozzarella, Courgettes, Aubergine, Peppers, Mushrooms' }, prezzo: '€ 7,00' },
-    ]
-  },
-  {
-    id: 'friggitoria',
-    it: { titolo: 'Friggitoria', emoji: '🍟' },
-    en: { titolo: 'Fried Sides', emoji: '🍟' },
-    sottotitoli: null,
-    items: [
-      { it: { nome: 'Patatine Fritte', desc: '' }, en: { nome: 'French Fries', desc: '' }, prezzo: '€ 3,00' },
-      { it: { nome: 'Patate con Buccia Fritte', desc: '' }, en: { nome: 'Skin-On Fries', desc: '' }, prezzo: '€ 4,00' },
-      { it: { nome: 'Twister alla Paprika', desc: '' }, en: { nome: 'Paprika Twister Fries', desc: '' }, prezzo: '€ 4,00' },
-      { it: { nome: 'Patatine Pops', desc: '' }, en: { nome: 'Potato Pops', desc: '' }, prezzo: '€ 4,00' },
-      { it: { nome: 'Crocchette di Patate', desc: '' }, en: { nome: 'Potato Croquettes', desc: '' }, prezzo: '€ 3,00' },
-      { it: { nome: 'Pepite di Pollo', desc: '' }, en: { nome: 'Chicken Nuggets', desc: '' }, prezzo: '€ 3,00' },
-      { it: { nome: 'Pepite di Pollo Speziate', desc: '' }, en: { nome: 'Spicy Chicken Nuggets', desc: '' }, prezzo: '€ 5,00' },
-      { it: { nome: 'Polpette Artigianali 15pz', desc: '' }, en: { nome: 'Homemade Meatballs 15pcs', desc: '' }, prezzo: '€ 5,00' },
-      { it: { nome: 'Panzerottini Dolci/Piccanti', desc: '' }, en: { nome: 'Mini Panzerotti Sweet/Spicy', desc: '' }, prezzo: '€ 4,00' },
-      { it: { nome: 'Straccetti di Pollo', desc: '' }, en: { nome: 'Chicken Strips', desc: '' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Crocchette Artigianali', desc: '' }, en: { nome: 'Homemade Croquettes', desc: '' }, prezzo: '€ 5,00' },
-      { it: { nome: 'Polpette di Melanzane', desc: '' }, en: { nome: 'Aubergine Balls', desc: '' }, prezzo: '€ 5,00' },
-      { it: { nome: 'Anelli di Cipolla', desc: '' }, en: { nome: 'Onion Rings', desc: '' }, prezzo: '€ 5,00' },
-      { it: { nome: 'Polpette di Pulled Pork', desc: '' }, en: { nome: 'Pulled Pork Balls', desc: '' }, prezzo: '€ 6,00' },
-      { it: { nome: 'Jalapeno', desc: '' }, en: { nome: 'Jalapeños', desc: '' }, prezzo: '€ 5,00' },
-      { it: { nome: 'Fritto Misto', desc: 'Selezione della friggitoria' }, en: { nome: 'Mixed Fry', desc: 'Selection of fried sides' }, prezzo: '€ 15,00' },
-    ]
-  },
-  {
-    id: 'bevande',
-    it: { titolo: 'Bevande', emoji: '🍷' },
-    en: { titolo: 'Drinks', emoji: '🍷' },
-    items: [],
-    sottotitoli: [
-      {
-        it: { label: 'Analcolici', isNew: false },
-        en: { label: 'Soft Drinks', isNew: false },
-        items: [
-          { it: { nome: 'Coca Cola', desc: '' }, en: { nome: 'Coca Cola', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Coca Cola Zero', desc: '' }, en: { nome: 'Coca Cola Zero', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Fanta', desc: '' }, en: { nome: 'Fanta', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Lemon Soda', desc: '' }, en: { nome: 'Lemon Soda', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Schweppes', desc: '' }, en: { nome: 'Schweppes', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Schweppes Limone', desc: '' }, en: { nome: 'Schweppes Lemon', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Thè Limone / Pesca', desc: '' }, en: { nome: 'Lemon / Peach Iced Tea', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Succhi di Frutta', desc: '' }, en: { nome: 'Fruit Juices', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Cedrata', desc: '' }, en: { nome: 'Cedrata (Citron Soda)', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Cocktail San Pellegrino', desc: '' }, en: { nome: 'San Pellegrino Cocktail', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Crodino', desc: '' }, en: { nome: 'Crodino', desc: '' }, prezzo: '€ 2,50' },
-        ]
-      },
-      {
-        it: { label: 'Birre', isNew: false },
-        en: { label: 'Beers', isNew: false },
-        items: [
-          { it: { nome: "Beck's", desc: '' }, en: { nome: "Beck's", desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Peroni', desc: '' }, en: { nome: 'Peroni', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Corona', desc: '' }, en: { nome: 'Corona', desc: '' }, prezzo: '€ 4,00' },
-          { it: { nome: "Tennet's", desc: '' }, en: { nome: "Tennet's", desc: '' }, prezzo: '€ 4,00' },
-          { it: { nome: 'Bjorne Beer', desc: '' }, en: { nome: 'Bjorne Beer', desc: '' }, prezzo: '€ 4,00' },
-          { it: { nome: 'Leffe Rossa', desc: '' }, en: { nome: 'Leffe Red', desc: '' }, prezzo: '€ 4,00' },
-          { it: { nome: 'Franziskaner Waiss', desc: '' }, en: { nome: 'Franziskaner Weiss', desc: '' }, prezzo: '€ 4,50' },
-          { it: { nome: 'Nastro Azzurro — Spina Piccola', desc: '' }, en: { nome: 'Nastro Azzurro — Small Draft', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Nastro Azzurro — Spina Media', desc: '' }, en: { nome: 'Nastro Azzurro — Medium Draft', desc: '' }, prezzo: '€ 4,00' },
-        ]
-      },
-      {
-        it: { label: 'Drink Alcolici', isNew: false },
-        en: { label: 'Alcoholic Drinks', isNew: false },
-        items: [
-          { it: { nome: 'Campari Soda', desc: '' }, en: { nome: 'Campari Soda', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Martini Bianco / Rosso', desc: '' }, en: { nome: 'Martini White / Red', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Campari Bitter', desc: '' }, en: { nome: 'Campari Bitter', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Prosecco', desc: '' }, en: { nome: 'Prosecco', desc: '' }, prezzo: '€ 3,00' },
-        ]
-      },
-      {
-        it: { label: 'Amari', isNew: false },
-        en: { label: 'Digestifs', isNew: false },
-        items: [
-          { it: { nome: 'Di Saronno', desc: '' }, en: { nome: 'Di Saronno', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Lucano', desc: '' }, en: { nome: 'Lucano', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Jagermeister', desc: '' }, en: { nome: 'Jägermeister', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Amaro del Capo', desc: '' }, en: { nome: 'Amaro del Capo', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Montenegro', desc: '' }, en: { nome: 'Montenegro', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Brancamenta', desc: '' }, en: { nome: 'Brancamenta', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Unicum', desc: '' }, en: { nome: 'Unicum', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Sambuca', desc: '' }, en: { nome: 'Sambuca', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Fernet Branca', desc: '' }, en: { nome: 'Fernet Branca', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Jefferson', desc: '' }, en: { nome: 'Jefferson', desc: '' }, prezzo: '€ 4,00' },
-        ]
-      },
-      {
-        it: { label: 'Distillati', isNew: false },
-        en: { label: 'Spirits', isNew: false },
-        items: [
-          { it: { nome: 'Vodka', desc: '' }, en: { nome: 'Vodka', desc: '' }, prezzo: '€ 2,50' },
-          { it: { nome: 'Grappa', desc: '' }, en: { nome: 'Grappa', desc: '' }, prezzo: '€ 3,00' },
-          { it: { nome: 'Grappa Barricata', desc: '' }, en: { nome: 'Aged Grappa', desc: '' }, prezzo: '€ 3,00' },
-          { it: { nome: 'Whisky', desc: '' }, en: { nome: 'Whisky', desc: '' }, prezzo: '€ 3,00' },
-          { it: { nome: 'Whisky Speciali', desc: '' }, en: { nome: 'Special Whiskies', desc: '' }, prezzo: '€ 5,00' },
-          { it: { nome: 'Rum', desc: '' }, en: { nome: 'Rum', desc: '' }, prezzo: '€ 3,00' },
-          { it: { nome: 'Rum Speciali', desc: '' }, en: { nome: 'Special Rums', desc: '' }, prezzo: '€ 5,00' },
-          { it: { nome: 'Cognac', desc: '' }, en: { nome: 'Cognac', desc: '' }, prezzo: '€ 4,00' },
-          { it: { nome: 'Tequila', desc: '' }, en: { nome: 'Tequila', desc: '' }, prezzo: '€ 3,00' },
-          { it: { nome: 'Cocktail vari', desc: '' }, en: { nome: 'Various Cocktails', desc: '' }, prezzo: '€ 5,00' },
-        ]
-      },
-    ]
-  }
-];
-
-// ── Build nav ────────────────────────────────────────────
-const desktopLinks  = document.getElementById('desktop-links');
-const mobileLinksEl = document.getElementById('mobile-links');
-const navCategories = [...menuData, { id: 'allergeni', it: { titolo: 'Allergeni' }, en: { titolo: 'Allergens' } }];
-
-navCategories.forEach(cat => {
-  [desktopLinks, mobileLinksEl].forEach((container, i) => {
-    const a = document.createElement('a');
-    a.href = `#${cat.id}`;
-    a.className = 'nav-link';
-    a.dataset.catId = cat.id;
-    a.dataset.itLabel = cat.it.titolo;
-    a.dataset.enLabel = cat.en.titolo;
-    a.textContent = cat.it.titolo;
-    if (i === 1) {
-      a.addEventListener('click', () => {
+    // Hamburger toggle
+    const toggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.addEventListener('click', (e) => {
+      if (!toggle.contains(e.target) && !mobileMenu.contains(e.target)) {
         mobileMenu.classList.remove('open');
         toggle.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
-      });
-    }
-    container.appendChild(a);
-  });
-});
+      }
+    });
 
-// Hamburger toggle
-const toggle     = document.getElementById('menu-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-toggle.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open');
-  toggle.classList.toggle('open', isOpen);
-  toggle.setAttribute('aria-expanded', String(isOpen));
-});
-document.addEventListener('click', (e) => {
-  if (!toggle.contains(e.target) && !mobileMenu.contains(e.target)) {
-    mobileMenu.classList.remove('open');
-    toggle.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-});
+    // ── Render menu ──────────────────────────────────────────
+    const root = document.getElementById('menu-root');
 
-// ── Render menu ──────────────────────────────────────────
-const root = document.getElementById('menu-root');
-
-function renderItems(items, lang) {
-  if (!items || !items.length) return '';
-  return items.map(item => {
-    const t = item[lang];
-    return `
+    function renderItems(items, lang) {
+      if (!items || !items.length) return '';
+      return items.map(item => {
+        const t = item[lang];
+        return `
       <div class="menu-card">
         <div class="flex justify-between items-start gap-4">
           <div class="flex-1 min-w-0">
@@ -1024,31 +1460,31 @@ function renderItems(items, lang) {
         </div>
       </div>
     `;
-  }).join('');
-}
-
-function buildMenuHTML(lang) {
-  root.innerHTML = '';
-  menuData.forEach((cat, idx) => {
-    const t = cat[lang];
-    const section = document.createElement('section');
-    section.id = cat.id;
-    section.className = 'section-fade mb-20';
-    section.style.scrollMarginTop = '90px';
-
-    let content = '';
-    if (cat.sottotitoli) {
-      cat.sottotitoli.forEach(sub => {
-        const st = sub[lang];
-        const badge = st.isNew ? `<span class="badge-new">${uiStrings[lang].badgeNew}</span>` : '';
-        content += `<div class="sub-header">${st.label}${badge}</div>`;
-        content += `<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">${renderItems(sub.items, lang)}</div>`;
-      });
-    } else {
-      content = `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">${renderItems(cat.items, lang)}</div>`;
+      }).join('');
     }
 
-    section.innerHTML = `
+    function buildMenuHTML(lang) {
+      root.innerHTML = '';
+      menuData.forEach((cat, idx) => {
+        const t = cat[lang];
+        const section = document.createElement('section');
+        section.id = cat.id;
+        section.className = 'section-fade mb-20';
+        section.style.scrollMarginTop = '90px';
+
+        let content = '';
+        if (cat.sottotitoli) {
+          cat.sottotitoli.forEach(sub => {
+            const st = sub[lang];
+            const badge = st.isNew ? `<span class="badge-new">${uiStrings[lang].badgeNew}</span>` : '';
+            content += `<div class="sub-header">${st.label}${badge}</div>`;
+            content += `<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">${renderItems(sub.items, lang)}</div>`;
+          });
+        } else {
+          content = `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">${renderItems(cat.items, lang)}</div>`;
+        }
+
+        section.innerHTML = `
       <div class="cat-divider">
         <div>
           <p style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#c2410c;margin-bottom:0.2rem;">${t.emoji}</p>
@@ -1057,27 +1493,27 @@ function buildMenuHTML(lang) {
       </div>
       ${content}
     `;
-    root.appendChild(section);
+        root.appendChild(section);
 
-    if (idx < menuData.length - 1) {
-      const sep = document.createElement('div');
-      sep.className = 'vine-separator';
-      sep.textContent = '· · ·';
-      root.appendChild(sep);
+        if (idx < menuData.length - 1) {
+          const sep = document.createElement('div');
+          sep.className = 'vine-separator';
+          sep.textContent = '· · ·';
+          root.appendChild(sep);
+        }
+      });
+
+      // Re-observe for fade-in
+      document.querySelectorAll('.section-fade').forEach(el => {
+        el.classList.remove('visible');
+        observer.observe(el);
+      });
     }
-  });
 
-  // Re-observe for fade-in
-  document.querySelectorAll('.section-fade').forEach(el => {
-    el.classList.remove('visible');
-    observer.observe(el);
-  });
-}
-
-// ── Build allergen grid ──────────────────────────────────
-function buildAllergenGrid(lang) {
-  const grid = document.getElementById('alg-grid');
-  grid.innerHTML = allergenData.map(a => `
+    // ── Build allergen grid ──────────────────────────────────
+    function buildAllergenGrid(lang) {
+      const grid = document.getElementById('alg-grid');
+      grid.innerHTML = allergenData.map(a => `
     <div class="alg-item">
       <span class="alg-code">${a.code}</span>
       <div>
@@ -1086,85 +1522,86 @@ function buildAllergenGrid(lang) {
       </div>
     </div>
   `).join('');
-}
+    }
 
-// Funzione per nascondere lo Splash Screen
-function enterMenu() {
-  const splash = document.getElementById('splash');
-  
-  // Aggiunge la classe che fa svanire la schermata (animazione CSS già presente nel tuo codice)
-  splash.classList.add('hide');
-  
-  // Rimuove il blocco dello scorrimento e rende visibile il sito
-  document.body.classList.remove('splash-active');
-}
+    // Funzione per nascondere lo Splash Screen
+    function enterMenu() {
+      const splash = document.getElementById('splash');
 
-// ── Language switcher ────────────────────────────────────
-function setLang(lang) {
-  if (lang === currentLang) return;
-  currentLang = lang;
+      // Aggiunge la classe che fa svanire la schermata (animazione CSS già presente nel tuo codice)
+      splash.classList.add('hide');
 
-  // Buttons
-  document.getElementById('btn-it').classList.toggle('active', lang === 'it');
-  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      // Rimuove il blocco dello scorrimento e rende visibile il sito
+      document.body.classList.remove('splash-active');
+    }
 
-  // HTML lang attr
-  document.documentElement.lang = lang;
+    // ── Language switcher ────────────────────────────────────
+    function setLang(lang) {
+      if (lang === currentLang) return;
+      currentLang = lang;
 
-  // UI strings
-  const s = uiStrings[lang];
-  document.getElementById('hero-tagline').textContent = s.heroTagline;
-  document.getElementById('hero-sub').innerHTML = s.heroSub;
-  document.getElementById('nav-menu-label').textContent = s.navMenuLabel;
-  document.getElementById('allergen-title').textContent = s.allergenTitle;
-  document.getElementById('allergen-intro').innerHTML = s.allergenIntro;
-  document.getElementById('allergen-notice').innerHTML = s.allergenNotice;
-  document.getElementById('footer-note').textContent = s.footerNote;
+      // Buttons
+      document.getElementById('btn-it').classList.toggle('active', lang === 'it');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
-  // Nav links labels
-  document.querySelectorAll('.nav-link').forEach(a => {
-    const label = a.dataset[lang + 'Label'];
-    if (label) a.textContent = label;
-  });
+      // HTML lang attr
+      document.documentElement.lang = lang;
 
-  // Allergen grid
-  buildAllergenGrid(lang);
+      // UI strings
+      const s = uiStrings[lang];
+      document.getElementById('hero-tagline').textContent = s.heroTagline;
+      document.getElementById('hero-sub').innerHTML = s.heroSub;
+      document.getElementById('nav-menu-label').textContent = s.navMenuLabel;
+      document.getElementById('allergen-title').textContent = s.allergenTitle;
+      document.getElementById('allergen-intro').innerHTML = s.allergenIntro;
+      document.getElementById('allergen-notice').innerHTML = s.allergenNotice;
+      document.getElementById('footer-note').textContent = s.footerNote;
 
-  // Rebuild menu
-  buildMenuHTML(lang);
-}
+      // Nav links labels
+      document.querySelectorAll('.nav-link').forEach(a => {
+        const label = a.dataset[lang + 'Label'];
+        if (label) a.textContent = label;
+      });
 
-// ── Fade-in on scroll ────────────────────────────────────
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.05 });
+      // Allergen grid
+      buildAllergenGrid(lang);
 
-// ── Active nav highlight ─────────────────────────────────
-const allIds = [...menuData.map(c => c.id), 'allergeni'];
-let allEls = [];
-const allNavs = () => document.querySelectorAll('.nav-link');
+      // Rebuild menu
+      buildMenuHTML(lang);
+    }
 
-window.addEventListener('scroll', () => {
-  allEls = allIds.map(id => document.getElementById(id));
-  let current = '';
-  allEls.forEach((sec, i) => { if (sec && window.scrollY >= sec.offsetTop - 120) current = allIds[i]; });
-  allNavs().forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
-}, { passive: true });
+    // ── Fade-in on scroll ────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.05 });
 
-// ── Init ─────────────────────────────────────────────────
-const initLang = new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'it';
-if (initLang === 'en') {
-  setLang('en');
-} else {
-  buildAllergenGrid('it');
-  buildMenuHTML('it');
-}
+    // ── Active nav highlight ─────────────────────────────────
+    const allIds = [...menuData.map(c => c.id), 'allergeni'];
+    let allEls = [];
+    const allNavs = () => document.querySelectorAll('.nav-link');
 
-// Observe allergen section too
-const algSection = document.getElementById('allergeni');
-if (algSection) observer.observe(algSection);
-</script>
+    window.addEventListener('scroll', () => {
+      allEls = allIds.map(id => document.getElementById(id));
+      let current = '';
+      allEls.forEach((sec, i) => { if (sec && window.scrollY >= sec.offsetTop - 120) current = allIds[i]; });
+      allNavs().forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+    }, { passive: true });
+
+    // ── Init ─────────────────────────────────────────────────
+    const initLang = new URLSearchParams(window.location.search).get('lang') === 'en' ? 'en' : 'it';
+    if (initLang === 'en') {
+      setLang('en');
+    } else {
+      buildAllergenGrid('it');
+      buildMenuHTML('it');
+    }
+
+    // Observe allergen section too
+    const algSection = document.getElementById('allergeni');
+    if (algSection) observer.observe(algSection);
+  </script>
 </body>
+
 </html>
